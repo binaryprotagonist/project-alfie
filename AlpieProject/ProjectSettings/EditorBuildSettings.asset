@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/English Tracing Book/Scenes/Main.unity
+    guid: d20ccbc3f8900ac4b8925a43e8e0397a
+  - enabled: 1
+    path: Assets/English Tracing Book/Scenes/LowercaseAlbum.unity
+    guid: 80f2728e100774d43884636734a4402b
+  - enabled: 1
+    path: Assets/English Tracing Book/Scenes/UppercaseAlbum.unity
+    guid: 37c47f3e137126146aa17870dd97081b
+  - enabled: 1
+    path: Assets/English Tracing Book/Scenes/NumbersAlbum.unity
+    guid: db10ab28836dba149ba60bf86e2a3864
+  - enabled: 1
+    path: Assets/English Tracing Book/Scenes/SentenceAlbum.unity
+    guid: db9457b3cbbcbb94b9294d72dd8d08a0
+  - enabled: 1
+    path: Assets/English Tracing Book/Scenes/Game.unity
+    guid: 580dc37f8a1ef3e468daaf4e0efcc090
   m_configObjects: {}
