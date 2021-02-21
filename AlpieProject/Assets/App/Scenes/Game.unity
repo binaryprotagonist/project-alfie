@@ -340,7 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRunning: 1
   currentPencil: {fileID: 7340783727031090343}
-  shapePrefab: {fileID: 7344688932603046372, guid: 4329d5b30e1a64643b7b8449205c1b77, type: 3}
+  shapePrefab: {fileID: 1949708936492119212, guid: 81ec49a493058fd4281d841aa3f163cb, type: 3}
   paintColor: {r: 1, g: 1, b: 1, a: 1}
   shapeParent: {fileID: 562572432}
   shape: {fileID: 0}

@@ -7,10 +7,9 @@ using System.Collections;
 ///https://www.assetstore.unity3d.com/en/#!/publisher/9268
 ///www.indiestd.com
 ///info@indiestd.com
-
 [DisallowMultipleComponent]
 public class ScrollSlider : MonoBehaviour
-{	
+{
 	/// <summary>
 	/// The groups grid layout reference
 	/// </summary>
@@ -64,44 +63,37 @@ public class ScrollSlider : MonoBehaviour
 	/// <summary>
 	/// The lerp speed.
 	/// </summary>
-	[Range(5,100)]
-	public float lerpSpeed = 8;
+	[Range (5, 100)] public float lerpSpeed = 8;
 
 	/// <summary>
 	/// The group width ratio.
 	/// </summary>
-	[Range(0.1f,5.0f)]
-	public float groupWidthRatio = 1;
+	[Range (0.1f, 5.0f)] public float groupWidthRatio = 1;
 
 	/// <summary>
 	/// The group height ratio.
 	/// </summary>
-	[Range(0.1f,5.0f)]
-	public float groupHeightRatio = 1;
+	[Range (0.1f, 5.0f)] public float groupHeightRatio = 1;
 
 	/// <summary>
 	/// The group spacing ratio.
 	/// </summary>
-	[Range(0,5.0f)]
-	public float groupSpacingRatio = 0.3f;
+	[Range (0, 5.0f)] public float groupSpacingRatio = 0.3f;
 
 	/// <summary>
 	/// The pointers width ratio.
 	/// </summary>
-	[Range(0.01f,5.0f)]
-	public float pointersWidthRatio = 0.036f;
+	[Range (0.01f, 5.0f)] public float pointersWidthRatio = 0.036f;
 
 	/// <summary>
 	/// The pointers height ratio.
 	/// </summary>
-	[Range(0.01f,5.0f)]
-	public float pointersHeightRatio = 1;
+	[Range (0.01f, 5.0f)] public float pointersHeightRatio = 1;
 
 	/// <summary>
 	/// The pointers spacing ratio.
 	/// </summary>
-	[Range(0,5.0f)]
-	public float pointersSpacingRatio = 0.002f;
+	[Range (0, 5.0f)] public float pointersSpacingRatio = 0.002f;
 
 	/// <summary>
 	/// A loop scroll.
@@ -111,14 +103,12 @@ public class ScrollSlider : MonoBehaviour
 	/// <summary>
 	/// The groups list.
 	/// </summary>
-	[HideInInspector]
-	public GameObject[] groups;
+	[HideInInspector] public GameObject[] groups;
 
 	/// <summary>
 	/// The pointers list.
 	/// </summary>
-	[HideInInspector]
-	public GameObject[] pointers;
+	[HideInInspector] public GameObject[] pointers;
 
 	/// <summary>
 	/// The holder of the callback on change group .
@@ -133,8 +123,7 @@ public class ScrollSlider : MonoBehaviour
 	/// <summary>
 	/// The index of the current group.
 	/// </summary>
-	[HideInInspector]
-	public int currentGroupIndex = 0;
+	[HideInInspector] public int currentGroupIndex = 0;
 
 	/// <summary>
 	/// A temp color.
@@ -166,20 +155,23 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	private float tempLerpSpeed;
 
-	public void Init(){
-
+	public void Init ()
+	{
 		//Setting up references and initial values
 		pointers = CommonUtil.FindGameObjectsOfTag ("Pointer");
 		groups = CommonUtil.FindGameObjectsOfTag ("Group");
 		scrollRect = GetComponent<ScrollRect> ();
-		rectTransform = GetComponent<RectTransform> (); 
+		rectTransform = GetComponent<RectTransform> ();
 		initialAspectRatio = Camera.main.aspect;
 		CalculateGridLayoutsValues ();
 		isLerping = true;
 
-		if (groups == null) {
+		if (groups == null)
+		{
 			Debug.LogWarning ("No groups found");
-		} else if (groups.Length == 0) {
+		}
+		else if (groups.Length == 0)
+		{
 			Debug.LogWarning ("No groups found");
 		}
 
@@ -190,7 +182,8 @@ public class ScrollSlider : MonoBehaviour
 
 	void Update ()
 	{
-		if (Camera.main.aspect != initialAspectRatio) {
+		if (Camera.main.aspect != initialAspectRatio)
+		{
 			CalculateGridLayoutsValues ();
 			initialAspectRatio = Camera.main.aspect;
 		}
@@ -206,15 +199,19 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	private void CalculateGridLayoutsValues ()
 	{
-		if (rectTransform == null) {
+		if (rectTransform == null)
+		{
 			return;
 		}
 
-		if (groupsGridLayout != null){
+		if (groupsGridLayout != null)
+		{
 			groupsGridLayout.spacing = new Vector2 (rectTransform.rect.width * groupSpacingRatio, 0);
 			groupsGridLayout.cellSize = new Vector2 (rectTransform.rect.width * groupWidthRatio, rectTransform.rect.height * groupHeightRatio);
 		}
-		if (pointersGridLayout != null){
+
+		if (pointersGridLayout != null)
+		{
 			pointersGridLayout.spacing = new Vector2 (pointersGridLayout.GetComponent<RectTransform> ().rect.width * pointersSpacingRatio, 0);
 			pointersGridLayout.cellSize = new Vector2 (pointersGridLayout.GetComponent<RectTransform> ().rect.width * pointersWidthRatio, pointersGridLayout.GetComponent<RectTransform> ().rect.height * pointersHeightRatio);
 		}
@@ -225,9 +222,12 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	private void HandleInput ()
 	{
-		if (Input.GetKeyDown (KeyCode.RightArrow)) {
+		if (Input.GetKeyDown (KeyCode.RightArrow))
+		{
 			NextGroup ();
-		} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+		}
+		else if (Input.GetKeyDown (KeyCode.LeftArrow))
+		{
 			PreviousGroup ();
 		}
 	}
@@ -238,7 +238,7 @@ public class ScrollSlider : MonoBehaviour
 	/// <param name="group">Group.</param>
 	public void CalcualteGroupAnchoredPosition (RectTransform group)
 	{
-		groupAnchoredPosition = (Vector2)scrollRect.transform.InverseTransformPoint (scrollContent.position) - (Vector2)scrollRect.transform.InverseTransformPoint (group.position) + new Vector2 (rectTransform.rect.width / 2.0f, 0);
+		groupAnchoredPosition = (Vector2) scrollRect.transform.InverseTransformPoint (scrollContent.position) - (Vector2) scrollRect.transform.InverseTransformPoint (group.position) + new Vector2 (rectTransform.rect.width / 2.0f, 0);
 	}
 
 	/// <summary>
@@ -246,11 +246,13 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void SnapToGroup ()
 	{
-		if (groups == null) {
+		if (groups == null)
+		{
 			return;
 		}
 
-		if (groups.Length == 0) {
+		if (groups.Length == 0)
+		{
 			return;
 		}
 
@@ -260,7 +262,8 @@ public class ScrollSlider : MonoBehaviour
 		tempAnchoredPostion.y = 0;
 		scrollContent.anchoredPosition = tempAnchoredPostion;
 
-		if (Vector2.Distance (tempAnchoredPostion, groupAnchoredPosition) <= 5) {
+		if (Vector2.Distance (tempAnchoredPostion, groupAnchoredPosition) <= 5)
+		{
 			DisableLerping ();
 		}
 	}
@@ -270,11 +273,13 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void GoToCurrentGroup ()
 	{
-		if (groups == null) {
+		if (groups == null)
+		{
 			return;
 		}
 
-		if (groups.Length == 0) {
+		if (groups.Length == 0)
+		{
 			return;
 		}
 
@@ -282,30 +287,38 @@ public class ScrollSlider : MonoBehaviour
 
 		DisableFarGroups (currentGroupIndex);
 
-		if (groups.Length <= 1) {
+		if (groups.Length <= 1)
+		{
 			DisableNextButton ();
 			DisablePreviousButton ();
-		} else if (currentGroupIndex == 0) {
+		}
+		else if (currentGroupIndex == 0)
+		{
 			DisablePreviousButton ();
 			EnableNextButton ();
-		} else if (currentGroupIndex == groups.Length - 1) {
+		}
+		else if (currentGroupIndex == groups.Length - 1)
+		{
 			DisableNextButton ();
 			EnablePreviousButton ();
-		} else {
+		}
+		else
+		{
 			EnableNextButton ();
 			EnablePreviousButton ();
 		}
 
 		if (currentGroupText != null)
-			currentGroupText.text = (currentGroupIndex + 1) + "/" + groups.Length;
+			currentGroupText.text = currentGroupIndex + 1 + "/" + groups.Length;
 
 		scrollRect.StopMovement ();
-		CalcualteGroupAnchoredPosition (groups [currentGroupIndex].GetComponent<RectTransform> ());
+		CalcualteGroupAnchoredPosition (groups[currentGroupIndex].GetComponent<RectTransform> ());
 		tempAnchoredPostion = scrollContent.anchoredPosition;
 		EnableCurrentPointer ();
 		EnableLerping ();
-		if (callBackHolder != null && !string.IsNullOrEmpty(changeGroupCallBack)) {
-			callBackHolder.SendMessage(changeGroupCallBack,currentGroupIndex,SendMessageOptions.DontRequireReceiver);
+		if (callBackHolder != null && !string.IsNullOrEmpty (changeGroupCallBack))
+		{
+			callBackHolder.SendMessage (changeGroupCallBack, currentGroupIndex, SendMessageOptions.DontRequireReceiver);
 		}
 	}
 
@@ -314,20 +327,26 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void NextGroup ()
 	{
-		if (groups == null) {
+		if (groups == null)
+		{
 			return;
 		}
 
-		if (groups.Length == 0) {
+		if (groups.Length == 0)
+		{
 			return;
 		}
 
-		if (currentGroupIndex + 1 >= groups.Length) {
-			if (loop) {
+		if (currentGroupIndex + 1 >= groups.Length)
+		{
+			if (loop)
+			{
 				DisableCurrentPointer ();
 				currentGroupIndex = 0;
 			}
-		} else {
+		}
+		else
+		{
 			DisableCurrentPointer ();
 			currentGroupIndex += 1;
 		}
@@ -340,23 +359,30 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void PreviousGroup ()
 	{
-		if (groups == null) {
+		if (groups == null)
+		{
 			return;
 		}
 
-		if (groups.Length == 0) {
+		if (groups.Length == 0)
+		{
 			return;
 		}
 
-		if (currentGroupIndex - 1 < 0) {
-			if (loop) {
+		if (currentGroupIndex - 1 < 0)
+		{
+			if (loop)
+			{
 				DisableCurrentPointer ();
 				currentGroupIndex = groups.Length - 1;
 			}
-		} else {
+		}
+		else
+		{
 			DisableCurrentPointer ();
 			currentGroupIndex -= 1;
 		}
+
 		GoToCurrentGroup ();
 	}
 
@@ -374,29 +400,38 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void OnDragEnd ()
 	{
-		if (groups == null) {
+		if (groups == null)
+		{
 			return;
 		}
 
-		if (groups.Length == 0) {
+		if (groups.Length == 0)
+		{
 			return;
 		}
 
-		if (scrollRect.velocity.x < -350) {
+		if (scrollRect.velocity.x < -350)
+		{
 			//Scroll to the next
 			NextGroup ();
-		} else if (scrollRect.velocity.x > 350) {
+		}
+		else if (scrollRect.velocity.x > 350)
+		{
 			//Scroll to the previous
 			PreviousGroup ();
-		} else {
+		}
+		else
+		{
 			//Scroll to the closest
-			RectTransform closestGroup = groups [0].GetComponent<RectTransform> ();
+			RectTransform closestGroup = groups[0].GetComponent<RectTransform> ();
 			float dist1, dist2 = Mathf.Infinity;
-			foreach (GameObject group in groups) {
+			foreach (GameObject group in groups)
+			{
 				//The Horizontal Distance between the current group and levels panel
 				dist1 = Mathf.Abs (group.transform.position.x - rectTransform.transform.position.x);
 
-				if (dist1 < dist2) {
+				if (dist1 < dist2)
+				{
 					closestGroup = group.GetComponent<RectTransform> ();
 					//The Horizontal Distance between the closest group and levels panel
 					dist2 = Mathf.Abs (closestGroup.transform.position.x - rectTransform.transform.position.x);
@@ -414,19 +449,22 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void EnableCurrentPointer ()
 	{
-		if (pointers == null) {
+		if (pointers == null)
+		{
 			return;
 		}
 
-		if (pointers.Length == 0) {
+		if (pointers.Length == 0)
+		{
 			return;
 		}
 
-		if (currentGroupIndex >= 0 && currentGroupIndex < pointers.Length) {
-			Color tempColor = pointers [currentGroupIndex].GetComponent<Image> ().color;
+		if (currentGroupIndex >= 0 && currentGroupIndex < pointers.Length)
+		{
+			Color tempColor = pointers[currentGroupIndex].GetComponent<Image> ().color;
 			tempColor.a = 1;
-			pointers [currentGroupIndex].GetComponent<Image> ().color = tempColor;
-			pointers [currentGroupIndex].GetComponent<Image> ().sprite = pointerEnabled;
+			pointers[currentGroupIndex].GetComponent<Image> ().color = tempColor;
+			pointers[currentGroupIndex].GetComponent<Image> ().sprite = pointerEnabled;
 		}
 	}
 
@@ -435,23 +473,27 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void DisableCurrentPointer ()
 	{
-		if (pointers == null) {
+		if (pointers == null)
+		{
 			return;
 		}
 
-		if (pointers.Length == 0) {
+		if (pointers.Length == 0)
+		{
 			return;
 		}
 
-		if (pointers == null) {
+		if (pointers == null)
+		{
 			return;
 		}
 
-		if (currentGroupIndex >= 0 && currentGroupIndex < pointers.Length) {
-			Color tempColor = pointers [currentGroupIndex].GetComponent<Image> ().color;
+		if (currentGroupIndex >= 0 && currentGroupIndex < pointers.Length)
+		{
+			Color tempColor = pointers[currentGroupIndex].GetComponent<Image> ().color;
 			tempColor.a = 0.3f;
-			pointers [currentGroupIndex].GetComponent<Image> ().color = tempColor;
-			pointers [currentGroupIndex].GetComponent<Image> ().sprite = pointerDisabled;
+			pointers[currentGroupIndex].GetComponent<Image> ().color = tempColor;
+			pointers[currentGroupIndex].GetComponent<Image> ().sprite = pointerDisabled;
 		}
 	}
 
@@ -460,7 +502,8 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void EnableNextButton ()
 	{
-		if (nextButton != null) {
+		if (nextButton != null)
+		{
 			nextButton.GetComponent<Button> ().interactable = true;
 		}
 	}
@@ -470,7 +513,8 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void DisableNextButton ()
 	{
-		if (nextButton != null) {
+		if (nextButton != null)
+		{
 			nextButton.GetComponent<Button> ().interactable = false;
 		}
 	}
@@ -480,7 +524,8 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void EnablePreviousButton ()
 	{
-		if (previousButton != null) {
+		if (previousButton != null)
+		{
 			previousButton.GetComponent<Button> ().interactable = true;
 		}
 	}
@@ -490,7 +535,8 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	public void DisablePreviousButton ()
 	{
-		if (previousButton != null) {
+		if (previousButton != null)
+		{
 			previousButton.GetComponent<Button> ().interactable = false;
 		}
 	}
@@ -516,19 +562,25 @@ public class ScrollSlider : MonoBehaviour
 	/// </summary>
 	private void DisableFarGroups (int groupIndex)
 	{
-		if (groups == null) {
+		if (groups == null)
+		{
 			return;
 		}
 
-		if (!(groupIndex >= 0 && groupIndex < groups.Length)) {
+		if (!(groupIndex >= 0 && groupIndex < groups.Length))
+		{
 			return;
 		}
 
-		for (int i = 0; i < groups.Length; i++) {
-			if (i == groupIndex - 1 || i == groupIndex || i == groupIndex + 1) {
-				CommonUtil.EnableChildern(groups [i].transform);
-			} else {
-				CommonUtil.DisableChildern(groups [i].transform);
+		for (int i = 0; i < groups.Length; i++)
+		{
+			if (i == groupIndex - 1 || i == groupIndex || i == groupIndex + 1)
+			{
+				CommonUtil.EnableChildern (groups[i].transform);
+			}
+			else
+			{
+				CommonUtil.DisableChildern (groups[i].transform);
 			}
 		}
 	}
