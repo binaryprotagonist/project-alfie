@@ -478,6 +478,7 @@ namespace DynamicBox.Managers
 		/// </summary>
 		private void CheckPathComplete ()
 		{
+			Debug.Log ("fillAmount = " + fillAmount);
 			if (fillAmount >= path.completeOffset)
 			{
 				path.completed = true;
