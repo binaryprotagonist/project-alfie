@@ -13,11 +13,6 @@ namespace DynamicBox.Managers
 		/// </summary>
 		public bool isRunning = true;
 
-		/// <summary>
-		/// The current pencil.
-		/// </summary>
-		public Pencil currentPencil;
-
 		[SerializeField] private GameObject shapePrefab;
 		[SerializeField] private Color paintColor;
 
@@ -115,11 +110,6 @@ namespace DynamicBox.Managers
 			else
 			{
 				Debug.LogErrorFormat ("You have to start the game from the Main scene");
-			}
-
-			if (currentPencil != null)
-			{
-				currentPencil.EnableSelection ();
 			}
 
 			ResetTargetQuarter ();
@@ -228,7 +218,6 @@ namespace DynamicBox.Managers
 			else
 			{
 				path.StopAllCoroutines ();
-				// CommonUtil.FindChildByTag (path.transform, "Fill").GetComponent<Image> ().color = currentPencil.value;
 				CommonUtil.FindChildByTag (path.transform, "Fill").GetComponent<Image> ().color = paintColor;
 			}
 
