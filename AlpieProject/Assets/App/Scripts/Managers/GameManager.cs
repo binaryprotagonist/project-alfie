@@ -2,19 +2,26 @@ using System;
 using System.Collections.Generic;
 using EnglishTracingBook;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace DynamicBox.Managers
 {
 	public class GameManager : MonoBehaviour
 	{
+		[Header ("Parameters")] [SerializeField] private bool isTestMode;
+
+		[Header ("Links")] [SerializeField] private GameObject testShapePrefab;
+		[SerializeField] private Color paintColor;
+		[SerializeField] private GameObject[] letterPrefabs;
+
+		[Header ("Letter sounds")] [SerializeField] private AudioSource audioSource;
+		[SerializeField] private AudioClip[] sounds;
+
 		/// <summary>
 		/// Whether the script is running or not.
 		/// </summary>
 		public bool isRunning = true;
-
-		[SerializeField] private GameObject shapePrefab;
-		[SerializeField] private Color paintColor;
 
 		/// <summary>
 		/// The path.
@@ -95,6 +102,8 @@ namespace DynamicBox.Managers
 		/// The compound shape reference.
 		/// </summary>
 		public static CompoundShape compoundShape;
+
+		private int letterIndex;
 
 		void Awake ()
 		{
@@ -249,11 +258,23 @@ namespace DynamicBox.Managers
 
 			try
 			{
-				GameObject shapeGameObject = Instantiate (shapePrefab, Vector3.zero, Quaternion.identity);
+				GameObject shapeGameObject;
+				if (isTestMode)
+				{
+					shapeGameObject = Instantiate (testShapePrefab, Vector3.zero, Quaternion.identity);
+				}
+				else
+				{
+					letterIndex = PlayerPrefs.GetInt ("LetterIndex");
+					
+					audioSource.PlayOneShot (sounds[letterIndex]);
+					shapeGameObject = Instantiate (letterPrefabs[letterIndex], Vector3.zero, Quaternion.identity);
+				}
+
 				shapeGameObject.transform.SetParent (shapeParent);
-				shapeGameObject.transform.localPosition = shapePrefab.transform.localPosition;
-				shapeGameObject.name = shapePrefab.name;
-				shapeGameObject.transform.localScale = shapePrefab.transform.localScale;
+				// shapeGameObject.transform.localPosition = testShapePrefab.transform.localPosition;
+				// shapeGameObject.name = testShapePrefab.name;
+				// shapeGameObject.transform.localScale = testShapePrefab.transform.localScale;
 
 				compoundShape = FindObjectOfType<CompoundShape> ();
 				if (compoundShape != null)
@@ -277,7 +298,7 @@ namespace DynamicBox.Managers
 				return;
 			}
 
-			shape.Spell ();
+			// shape.Spell ();
 
 			EnableGameManager ();
 		}
@@ -525,6 +546,8 @@ namespace DynamicBox.Managers
 		/// </summary>
 		private void OnShapeComplete ()
 		{
+			Debug.Log ("Shape completed");
+
 			bool allDone = true;
 
 			List<Shape> shapes = new List<Shape> ();
@@ -616,7 +639,7 @@ namespace DynamicBox.Managers
 			}
 
 			// completeEffect.emit = false;
-			GameObject.Find ("NextButton").GetComponent<Animator> ().SetBool ("Select", false);
+			// GameObject.Find ("NextButton").GetComponent<Animator> ().SetBool ("Select", false);
 			Area.Hide ();
 
 			foreach (Shape s in shapes)
@@ -644,7 +667,7 @@ namespace DynamicBox.Managers
 					StartAutoTracing (shape);
 				}
 
-				s.Spell ();
+				// s.Spell ();
 			}
 		}
 
@@ -717,7 +740,7 @@ namespace DynamicBox.Managers
 		/// </summary>
 		public void EnableHand ()
 		{
-			hand.GetComponent<SpriteRenderer> ().enabled = true;
+			// hand.GetComponent<SpriteRenderer> ().enabled = true;
 		}
 
 		/// <summary>
@@ -725,7 +748,7 @@ namespace DynamicBox.Managers
 		/// </summary>
 		public void DisableHand ()
 		{
-			hand.GetComponent<SpriteRenderer> ().enabled = false;
+			// hand.GetComponent<SpriteRenderer> ().enabled = false;
 		}
 
 		/// <summary>
@@ -734,6 +757,11 @@ namespace DynamicBox.Managers
 		private void EnableGameManager ()
 		{
 			isRunning = true;
+		}
+
+		public void OpenMenuScene ()
+		{
+			SceneManager.LoadScene ("App/Scenes/Menu");
 		}
 	}
 }

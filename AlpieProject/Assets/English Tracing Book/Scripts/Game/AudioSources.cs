@@ -5,9 +5,8 @@ using System.Collections;
 ///https://www.assetstore.unity3d.com/en/#!/publisher/9268
 ///www.indiestd.com
 ///info@indiestd.com
-
-public class AudioSources : MonoBehaviour {
-
+public class AudioSources : MonoBehaviour
+{
 	/// <summary>
 	/// This Gameobject defined as a Singleton.
 	/// </summary>
@@ -18,8 +17,7 @@ public class AudioSources : MonoBehaviour {
 	/// First Audio Souce used for the music
 	/// Second Audio Souce used for the sound effects
 	/// </summary>
-	[HideInInspector]
-	public AudioSource [] audioSources;
+	[HideInInspector] public AudioSource[] audioSources;
 
 	/// <summary>
 	/// The bubble sound effect.
@@ -29,19 +27,23 @@ public class AudioSources : MonoBehaviour {
 	// Use this for initialization
 	void Awake ()
 	{
-		if (instance == null) {
+		if (instance == null)
+		{
 			instance = this;
-			audioSources = GetComponents<AudioSource>();
-			DontDestroyOnLoad(gameObject);
-		} else {
+			audioSources = GetComponents<AudioSource> ();
+			DontDestroyOnLoad (gameObject);
+		}
+		else
+		{
 			Destroy (gameObject);
 		}
 	}
 
-	public void PlayBubbleSFX(){
-		if (bubbleSFX != null && audioSources[1] != null) {
+	public void PlayBubbleSFX ()
+	{
+		if (bubbleSFX != null && audioSources[1] != null)
+		{
 			CommonUtil.PlayOneShotClipAt (bubbleSFX, Vector3.zero, audioSources[1].volume);
 		}
-
 	}
 }
