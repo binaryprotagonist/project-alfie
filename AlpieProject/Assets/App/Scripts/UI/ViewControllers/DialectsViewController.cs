@@ -20,5 +20,10 @@ namespace DynamicBox.UI.ViewControllers
 		{
 			Debug.Log ("Selected dialect : " + change.value);
 		}
+
+		public void ShowLetters ()
+		{
+			PlayerPrefs.SetInt ("LetterIndex", 0);
+		}
 	}
 }

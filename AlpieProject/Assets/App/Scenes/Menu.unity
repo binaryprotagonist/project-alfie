@@ -7401,7 +7401,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1045107329}
         m_TargetAssemblyTypeName: DynamicBox.UI.ViewControllers.DialectsViewController,
           Assembly-CSharp
-        m_MethodName: LettersViewOpened
+        m_MethodName: ShowLetters
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
