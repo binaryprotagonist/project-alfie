@@ -1116,8 +1116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3be33da441182428ae6e50d07df4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTestMode: 0
-  testShapePrefab: {fileID: 1860067741944524881, guid: f29b7b07dc323b7429f7c59e28a609df, type: 3}
+  isTestMode: 1
+  testShapePrefab: {fileID: 4598601986175871192, guid: 78d2bd4fb03fb0743b1395d1d35b816f, type: 3}
   paintColor: {r: 1, g: 1, b: 1, a: 1}
   letterPrefabs:
   - {fileID: 4175875526775321138, guid: 693e3589edb0de44a881042df2720b4b, type: 3}
@@ -1143,7 +1143,7 @@ MonoBehaviour:
   - {fileID: 3637060482971416050, guid: 9fe7051ca93605542bcfc4d0f5e8603a, type: 3}
   - {fileID: 2758057976061323762, guid: f2af0507d5ce0dd499e7af4efbc2a379, type: 3}
   - {fileID: 2758057976061323762, guid: df7afed2d4d1d814e96946d69c1112b2, type: 3}
-  - {fileID: 3475570715615963749, guid: 78d2bd4fb03fb0743b1395d1d35b816f, type: 3}
+  - {fileID: 4598601986175871192, guid: 78d2bd4fb03fb0743b1395d1d35b816f, type: 3}
   - {fileID: 3475570715615963749, guid: bf2495e6b1eb7ab47b2943b2da127c6d, type: 3}
   - {fileID: 1860067741944524881, guid: bf22a9785de3e0b4587ea63cb7d77dab, type: 3}
   - {fileID: 1860067741944524881, guid: c7c929ca05885574fb9a36e4624b8053, type: 3}
@@ -2155,7 +2155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

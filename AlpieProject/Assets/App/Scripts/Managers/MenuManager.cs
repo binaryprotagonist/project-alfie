@@ -9,11 +9,10 @@ namespace DynamicBox.Managers
 
 		public void ShowGameView ()
 		{
-			StartCoroutine (ShowGameViewDelayed ());
-			// gameManager.CreateShape ();
+			StartCoroutine (CreateShapeDelayed ());
 		}
 
-		private IEnumerator ShowGameViewDelayed ()
+		private IEnumerator CreateShapeDelayed ()
 		{
 			yield return new WaitForSeconds (0.2f);
 			gameManager.CreateShape ();

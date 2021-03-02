@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using EnglishTracingBook;
 using UnityEngine;
@@ -10,97 +9,63 @@ namespace DynamicBox.Managers
 {
 	public class GameManager : MonoBehaviour
 	{
-		[Header ("Parameters")]
+		[Header ("Parameters")] 
 		[SerializeField] private bool isTestMode;
 
-		[Header ("Links")] 
+		[Header ("Links")]
 		[SerializeField] private GameObject testShapePrefab;
 		[SerializeField] private Color paintColor;
 		[SerializeField] private GameObject[] letterPrefabs;
 
-		/// <summary>
-		/// Whether the script is running or not.
-		/// </summary>
+		// Whether the script is running or not.
 		public bool isRunning = true;
 
-		/// <summary>
-		/// The path.
-		/// </summary>
+		// The path.
 		private Path path;
 
-		/// <summary>
-		/// The shape parent.
-		/// </summary>
+		// The shape parent.
 		public Transform shapeParent;
 
-		/// <summary>
-		/// The shape reference.
-		/// </summary>
-		/*[HideInInspector]*/ public Shape shape;
+		// The shape reference.
+		[HideInInspector] public Shape shape;
 
-		/// <summary>
-		/// The path fill image.
-		/// </summary>
+		// The path fill image.
 		private Image pathFillImage;
 
-		/// <summary>
-		/// The click postion.
-		/// </summary>
+		///The click position.
 		private Vector3 clickPostion;
 
-		/// <summary>
-		/// The direction between click and shape.
-		/// </summary>
+		// The direction between click and shape.
 		private Vector2 direction;
 
-		/// <summary>
-		/// The current angle , angleOffset and fill amount.
-		/// </summary>
+		// The current angle , angleOffset and fill amount.
 		private float angle, angleOffset, fillAmount;
 
-		/// <summary>
-		/// The clock wise sign.
-		/// </summary>
+		// The clock wise sign.
 		private float clockWiseSign;
 
-		/// <summary>
-		/// The hand reference.
-		/// </summary>
+		// The hand reference.
 		public Transform hand;
 
-		/// <summary>
-		/// The default size of the cursor.
-		/// </summary>
+		// The default size of the cursor.
 		private Vector3 cursorDefaultSize;
 
-		/// <summary>
-		/// The click size of the cursor.
-		/// </summary>
+		// The click size of the cursor.
 		private Vector3 cursorClickSize;
 
-		/// <summary>
-		/// The target quarter of the radial fill.
-		/// </summary>
+		// The target quarter of the radial fill.
 		private float targetQuarter;
 
-		/// <summary>
-		/// The effects audio source.
-		/// </summary>
+		// The effects audio source.
 		private AudioSource effectsAudioSource;
 
-		/// <summary>
-		/// The hit2d reference.
-		/// </summary>
+		// The hit2d reference.
 		private RaycastHit2D hit2d;
 
-		/// <summary>
-		/// The shapes manager reference.
-		/// </summary>
+		// The shapes manager reference.
 		private ShapesManager shapesManager;
 
-		/// <summary>
-		/// The compound shape reference.
-		/// </summary>
+		// The compound shape reference.
 		public static CompoundShape compoundShape;
 
 		private int letterIndex;
@@ -213,10 +178,7 @@ namespace DynamicBox.Managers
 			}
 		}
 
-		/// <summary>
-		/// On the start hit collider event.
-		/// </summary>
-		/// <param name="hit2d">Hit2d.</param>
+		// On the start hit collider event.
 		private void OnStartHitCollider (RaycastHit2D hit2d)
 		{
 			path = hit2d.transform.GetComponentInParent<Path> ();
@@ -240,9 +202,7 @@ namespace DynamicBox.Managers
 				}
 		}
 
-		/// <summary>
-		/// Create new shape.
-		/// </summary>
+		// Create new shape.
 		public void CreateShape ()
 		{
 			CompoundShape currentCompoundShape = FindObjectOfType<CompoundShape> ();
@@ -305,10 +265,7 @@ namespace DynamicBox.Managers
 			EnableGameManager ();
 		}
 
-		/// <summary>
-		/// Draw the hand.
-		/// </summary>
-		/// <param name="clickPosition">Click position.</param>
+		// Draw the hand.
 		private void DrawHand (Vector3 clickPosition)
 		{
 			if (hand == null)
@@ -319,26 +276,19 @@ namespace DynamicBox.Managers
 			hand.transform.position = clickPosition;
 		}
 
-		/// <summary>
-		/// Set the size of the hand to default size.
-		/// </summary>
+		// Set the size of the hand to default size.
 		private void SetHandDefaultSize ()
 		{
 			hand.transform.localScale = cursorDefaultSize;
 		}
 
-		/// <summary>
-		/// Set the size of the hand to click size.
-		/// </summary>
+		// Set the size of the hand to click size.
 		private void SetHandClickSize ()
 		{
 			hand.transform.localScale = cursorClickSize;
 		}
 
-		/// <summary>
-		/// Get the current platform click position.
-		/// </summary>
-		/// <returns>The current platform click position.</returns>
+		// Get the current platform click position.
 		private Vector3 GetCurrentPlatformClickPosition (Camera camera)
 		{
 			Vector3 clickPosition = Vector3.zero;
@@ -363,9 +313,7 @@ namespace DynamicBox.Managers
 			return clickPosition;
 		}
 
-		/// <summary>
-		/// Radial the fill method.
-		/// </summary>
+		// Radial the fill method.
 		private void RadialFill ()
 		{
 			clickPostion = Camera.main.ScreenToWorldPoint (Input.mousePosition);
@@ -428,9 +376,7 @@ namespace DynamicBox.Managers
 			CheckPathComplete ();
 		}
 
-		/// <summary>
-		/// Linear fill method.
-		/// </summary>
+		// Linear fill method.
 		private void LinearFill ()
 		{
 			clickPostion = Camera.main.ScreenToWorldPoint (Input.mousePosition);
@@ -476,18 +422,14 @@ namespace DynamicBox.Managers
 			CheckPathComplete ();
 		}
 
-		/// <summary>
-		/// Point fill.
-		/// </summary>
+		// Point fill.
 		private void PointFill ()
 		{
 			pathFillImage.fillAmount = 1;
 			CheckPathComplete ();
 		}
 
-		/// <summary>
-		/// Checks wehther path completed or not.
-		/// </summary>
+		// Checks wehther path completed or not.
 		private void CheckPathComplete ()
 		{
 			// Debug.Log ("fillAmount = " + fillAmount);
@@ -523,10 +465,7 @@ namespace DynamicBox.Managers
 			}
 		}
 
-		/// <summary>
-		/// Check whether the shape completed or not.
-		/// </summary>
-		/// <returns><c>true</c>, if shape completed, <c>false</c> otherwise.</returns>
+		// Check whether the shape completed or not.
 		private bool CheckShapeComplete ()
 		{
 			bool shapeCompleted = true;
@@ -543,9 +482,7 @@ namespace DynamicBox.Managers
 			return shapeCompleted;
 		}
 
-		/// <summary>
-		/// On shape completed event.
-		/// </summary>
+		// On shape completed event.
 		private void OnShapeComplete ()
 		{
 			Debug.Log ("Shape completed");
@@ -592,9 +529,7 @@ namespace DynamicBox.Managers
 			}
 		}
 
-		/// <summary>
-		/// Save the status of the shape(stars,path colors) .
-		/// </summary>
+		// Save the status of the shape(stars,path colors).
 		private void SaveShapeStatus (List<Shape> shapes)
 		{
 			DataManager.SaveShapeStars (TableShape.selectedShape.ID, CommonUtil.GetTableShapeStars (FindObjectOfType<Progress> ().starsNumber), shapesManager);
@@ -625,9 +560,7 @@ namespace DynamicBox.Managers
 			}
 		}
 
-		/// <summary>
-		/// Reset the shape.
-		/// </summary>
+		// Reset the shape.
 		public void ResetShape ()
 		{
 			List<Shape> shapes = new List<Shape> ();
@@ -673,10 +606,7 @@ namespace DynamicBox.Managers
 			}
 		}
 
-		/// <summary>
-		/// Starts the auto tracing for the current path.
-		/// </summary>
-		/// <param name="s">Shape Reference.</param>
+		// Starts the auto tracing for the current path.
 		public void StartAutoTracing (Shape s)
 		{
 			if (s == null)
@@ -698,9 +628,7 @@ namespace DynamicBox.Managers
 			s.ShowPathNumbers (s.GetCurrentPathIndex ());
 		}
 
-		/// <summary>
-		/// Play the correct SFX.
-		/// </summary>
+		// Play the correct SFX.
 		public void PlayCorrectSFX ()
 		{
 			// if (correctSFX != null && effectsAudioSource != null)
@@ -709,9 +637,7 @@ namespace DynamicBox.Managers
 			// }
 		}
 
-		/// <summary>
-		/// Reset the path.
-		/// </summary>
+		// Reset the path.
 		private void ResetPath ()
 		{
 			if (path != null)
@@ -720,50 +646,35 @@ namespace DynamicBox.Managers
 			ResetTargetQuarter ();
 		}
 
-		/// <summary>
-		/// Reset the target quarter.
-		/// </summary>
+		// Reset the target quarter.
 		public void ResetTargetQuarter ()
 		{
 			targetQuarter = 90;
 		}
 
-		/// <summary>
-		/// Release the path.
-		/// </summary>
+		// Release the path.
 		private void ReleasePath ()
 		{
 			path = null;
 			pathFillImage = null;
 		}
 
-		/// <summary>
-		/// Enable the hand.
-		/// </summary>
+		// Enable the hand.
 		public void EnableHand ()
 		{
 			// hand.GetComponent<SpriteRenderer> ().enabled = true;
 		}
 
-		/// <summary>
-		/// Disable the hand.
-		/// </summary>
+		// Disable the hand.
 		public void DisableHand ()
 		{
 			// hand.GetComponent<SpriteRenderer> ().enabled = false;
 		}
 
-		/// <summary>
-		/// Enable the game manager.
-		/// </summary>
+		// Enable the game manager.
 		private void EnableGameManager ()
 		{
 			isRunning = true;
-		}
-
-		public void OpenMenuScene ()
-		{
-			SceneManager.LoadScene ("App/Scenes/Menu");
 		}
 	}
 }

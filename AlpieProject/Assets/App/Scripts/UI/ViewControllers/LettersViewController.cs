@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
-using DynamicBox.Managers;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -10,7 +7,6 @@ namespace DynamicBox.UI.ViewControllers
 	public class LettersViewController : MonoBehaviour
 	{
 		[Header ("Links")] 
-		[SerializeField] private DynamicBox.Managers.GameManager gameManager;
 		[SerializeField] private Image letterImage;
 		[SerializeField] private Button previousButton;
 		[SerializeField] private Button nextButton;
@@ -101,9 +97,10 @@ namespace DynamicBox.UI.ViewControllers
 			audioSource.PlayOneShot (currentSounds[currentLetterIndex]);
 		}
 
+		// Doozy => Game Event
 		public void PlaySoundOnShowView ()
 		{
-			Debug.Log ("PlaySoundOnShowView");
+			// Debug.Log ("PlaySoundOnShowView");
 			audioSource.PlayOneShot (currentSounds[currentLetterIndex]);
 		}
 	}
