@@ -2762,8 +2762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3be33da441182428ae6e50d07df4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTestMode: 0
-  testShapePrefab: {fileID: 1860067741944524881, guid: f29b7b07dc323b7429f7c59e28a609df, type: 3}
+  isTestMode: 1
+  testShapePrefab: {fileID: 3688337379817567593, guid: cb07d02031041fb49a2edc6037c69eb6, type: 3}
   paintColor: {r: 1, g: 1, b: 1, a: 1}
   letterPrefabs:
   - {fileID: 4175875526775321138, guid: 693e3589edb0de44a881042df2720b4b, type: 3}

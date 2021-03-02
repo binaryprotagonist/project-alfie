@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using EnglishTracingBook;
 using UnityEngine;
@@ -9,14 +10,13 @@ namespace DynamicBox.Managers
 {
 	public class GameManager : MonoBehaviour
 	{
-		[Header ("Parameters")] [SerializeField] private bool isTestMode;
+		[Header ("Parameters")]
+		[SerializeField] private bool isTestMode;
 
-		[Header ("Links")] [SerializeField] private GameObject testShapePrefab;
+		[Header ("Links")] 
+		[SerializeField] private GameObject testShapePrefab;
 		[SerializeField] private Color paintColor;
 		[SerializeField] private GameObject[] letterPrefabs;
-
-		[Header ("Letter sounds")] [SerializeField] private AudioSource audioSource;
-		[SerializeField] private AudioClip[] sounds;
 
 		/// <summary>
 		/// Whether the script is running or not.
@@ -36,7 +36,7 @@ namespace DynamicBox.Managers
 		/// <summary>
 		/// The shape reference.
 		/// </summary>
-		[HideInInspector] public Shape shape;
+		/*[HideInInspector]*/ public Shape shape;
 
 		/// <summary>
 		/// The path fill image.
@@ -122,7 +122,10 @@ namespace DynamicBox.Managers
 			}
 
 			ResetTargetQuarter ();
-			CreateShape ();
+			if (isTestMode)
+			{
+				CreateShape ();
+			}
 		}
 
 		void Start ()
@@ -240,7 +243,7 @@ namespace DynamicBox.Managers
 		/// <summary>
 		/// Create new shape.
 		/// </summary>
-		private void CreateShape ()
+		public void CreateShape ()
 		{
 			CompoundShape currentCompoundShape = FindObjectOfType<CompoundShape> ();
 			if (currentCompoundShape != null)
@@ -266,15 +269,14 @@ namespace DynamicBox.Managers
 				else
 				{
 					letterIndex = PlayerPrefs.GetInt ("LetterIndex");
-					
-					audioSource.PlayOneShot (sounds[letterIndex]);
+
 					shapeGameObject = Instantiate (letterPrefabs[letterIndex], Vector3.zero, Quaternion.identity);
 				}
 
 				shapeGameObject.transform.SetParent (shapeParent);
-				// shapeGameObject.transform.localPosition = testShapePrefab.transform.localPosition;
-				// shapeGameObject.name = testShapePrefab.name;
-				// shapeGameObject.transform.localScale = testShapePrefab.transform.localScale;
+				shapeGameObject.transform.localPosition = Vector3.zero;
+				shapeGameObject.transform.localRotation = Quaternion.identity;
+				shapeGameObject.transform.localScale = Vector3.one;
 
 				compoundShape = FindObjectOfType<CompoundShape> ();
 				if (compoundShape != null)
@@ -721,7 +723,7 @@ namespace DynamicBox.Managers
 		/// <summary>
 		/// Reset the target quarter.
 		/// </summary>
-		private void ResetTargetQuarter ()
+		public void ResetTargetQuarter ()
 		{
 			targetQuarter = 90;
 		}

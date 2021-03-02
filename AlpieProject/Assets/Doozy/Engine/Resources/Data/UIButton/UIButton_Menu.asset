@@ -17,4 +17,4 @@ MonoBehaviour:
   Names:
   - ToLettersView
   - ToDialectsView
-  - ToGameScene
+  - ToGameView
