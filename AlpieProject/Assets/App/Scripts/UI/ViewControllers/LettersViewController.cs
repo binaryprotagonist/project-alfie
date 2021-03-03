@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using Random = UnityEngine.Random;
 
 namespace DynamicBox.UI.ViewControllers
@@ -22,9 +23,18 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private AudioClip[] lebaneseSounds;
 		[SerializeField] private AudioClip[] currentSounds;
 
+		[Header("Letter videos")]
+		[SerializeField] private VideoPlayer videoPlayer;
+		[SerializeField] private VideoClip[] backgroundVideos;
+
 		[SerializeField] private int currentLetterIndex;
 
 		#region Unity Methods
+
+		void Start ()
+		{
+			SetBackgroundVideo ();
+		}
 
 		void OnEnable ()
 		{
@@ -95,6 +105,8 @@ namespace DynamicBox.UI.ViewControllers
 				audioSource.Stop ();
 			}
 			audioSource.PlayOneShot (currentSounds[currentLetterIndex]);
+
+			SetBackgroundVideo ();
 		}
 
 		// Doozy => Game Event
@@ -103,5 +115,13 @@ namespace DynamicBox.UI.ViewControllers
 			// Debug.Log ("PlaySoundOnShowView");
 			audioSource.PlayOneShot (currentSounds[currentLetterIndex]);
 		}
+
+		public void SetBackgroundVideo ()
+		{
+			videoPlayer.Play ();
+			videoPlayer.clip = backgroundVideos[currentLetterIndex];
+			videoPlayer.isLooping = true;
+		}
+
 	}
 }
