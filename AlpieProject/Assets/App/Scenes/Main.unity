@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3be33da441182428ae6e50d07df4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTestMode: 1
+  isTestMode: 0
   testShapePrefab: {fileID: 1860067741944524881, guid: c7c929ca05885574fb9a36e4624b8053, type: 3}
   paintColor: {r: 1, g: 1, b: 1, a: 1}
   letterPrefabs:
