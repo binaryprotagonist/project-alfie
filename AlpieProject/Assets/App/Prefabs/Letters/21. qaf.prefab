@@ -70,7 +70,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0
+  m_FillAmount: 0.061
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -468,7 +468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 167.2, y: 15.2}
+  m_AnchoredPosition: {x: 166.5, y: 33.5}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7690651408765054149
@@ -756,8 +756,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 102.8, y: -26.4}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 92.795654, y: 9.934692}
+  m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &5920737071416637882
 BoxCollider2D:
@@ -783,7 +783,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 100, y: 100}
+  m_Size: {x: 200, y: 300}
   m_EdgeRadius: 0
 --- !u!1 &3637060482971416050
 GameObject:
@@ -978,7 +978,7 @@ MonoBehaviour:
   fillMethod: 0
   type: 0
   offset: 90
-  completeOffset: 0.8
+  completeOffset: 0.95
   firstNumber: {fileID: 4373656167519384732}
   secondNumber: {fileID: 3797373866227496017}
   quarterRestriction: 1
@@ -1794,8 +1794,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 227, y: 128.7}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 209.60205, y: 145.45001}
+  m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &3641856392727574111
 BoxCollider2D:
@@ -1821,7 +1821,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 100, y: 100}
+  m_Size: {x: 200, y: 300}
   m_EdgeRadius: 0
 --- !u!1 &8399255082862101156
 GameObject:

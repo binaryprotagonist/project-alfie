@@ -640,6 +640,16 @@ namespace DynamicBox.Managers
 		// Reset the path.
 		private void ResetPath ()
 		{
+			// Debug.Log ("Shape name = " + shape.name);
+			//
+			// switch (shape.name)
+			// {
+			// 	case "20. fa(Clone)":
+			// 		ResetShape ();
+			// 		return;
+			// 		// break;
+			// }
+			
 			if (path != null)
 				path.Reset ();
 			ReleasePath ();
