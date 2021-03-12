@@ -116,12 +116,14 @@ namespace DynamicBox.UI.ViewControllers
 			audioSource.PlayOneShot (currentSounds[currentLetterIndex]);
 		}
 
-		public void SetBackgroundVideo ()
+		private void SetBackgroundVideo ()
 		{
-			videoPlayer.Play ();
-			videoPlayer.clip = backgroundVideos[currentLetterIndex];
-			videoPlayer.isLooping = true;
-		}
+			videoPlayer.Stop ();
 
+			videoPlayer.clip = backgroundVideos[currentLetterIndex];
+			
+			videoPlayer.Play ();
+			// videoPlayer.isLooping = true;
+		}
 	}
 }
