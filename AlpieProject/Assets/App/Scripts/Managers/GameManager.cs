@@ -15,6 +15,8 @@ namespace DynamicBox.Managers
 
 		[Header ("Links")]
 		[SerializeField] private LettersViewController lettersViewController;
+		[SerializeField] private Canvas myCanvas;
+		[SerializeField] private GameObject rocket;
 		
 		[Space]
 		[SerializeField] private GameObject testShapePrefab;
@@ -146,6 +148,7 @@ namespace DynamicBox.Managers
 				DisableHand ();
 				shape.Invoke ("EnableTracingHand", 1);
 				ResetPath ();
+				rocket.SetActive (false);
 			}
 
 			if (!isRunning || path == null || pathFillImage == null)
@@ -331,6 +334,10 @@ namespace DynamicBox.Managers
 		// Radial the fill method.
 		private void RadialFill ()
 		{
+			rocket.SetActive (true);
+			RectTransformUtility.ScreenPointToLocalPointInRectangle(myCanvas.transform as RectTransform, Input.mousePosition, myCanvas.worldCamera, out Vector2 pos);
+			rocket.transform.position = myCanvas.transform.TransformPoint(pos);
+			
 			clickPostion = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
 			direction = clickPostion - path.transform.position;
@@ -394,6 +401,10 @@ namespace DynamicBox.Managers
 		// Linear fill method.
 		private void LinearFill ()
 		{
+			rocket.SetActive (true);
+			RectTransformUtility.ScreenPointToLocalPointInRectangle(myCanvas.transform as RectTransform, Input.mousePosition, myCanvas.worldCamera, out Vector2 pos);
+			rocket.transform.position = myCanvas.transform.TransformPoint(pos);
+			
 			clickPostion = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
 			Vector3 rotation = path.transform.eulerAngles;
@@ -450,6 +461,7 @@ namespace DynamicBox.Managers
 			// Debug.Log ("fillAmount = " + fillAmount);
 			if (fillAmount >= path.completeOffset)
 			{
+				rocket.SetActive (false);
 				path.completed = true;
 				path.AutoFill ();
 				path.SetNumbersVisibility (false);

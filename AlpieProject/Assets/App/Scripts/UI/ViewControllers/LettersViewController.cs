@@ -9,7 +9,7 @@ namespace DynamicBox.UI.ViewControllers
 {
 	public class LettersViewController : MonoBehaviour
 	{
-		[Header ("Links")] 
+		[Header ("Links")]
 		[SerializeField] private SaveController saveController;
 		[SerializeField] private DynamicBox.Managers.GameManager gameManager;
 		[SerializeField] private GameObject rawImage;
