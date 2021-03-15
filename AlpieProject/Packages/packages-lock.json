@@ -179,6 +179,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "net.dynamicbox.savemanagement": {
+      "version": "file:Save Manager",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

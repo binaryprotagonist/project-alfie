@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using DynamicBox.Controllers;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using Random = UnityEngine.Random;
@@ -8,6 +10,10 @@ namespace DynamicBox.UI.ViewControllers
 	public class LettersViewController : MonoBehaviour
 	{
 		[Header ("Links")] 
+		[SerializeField] private SaveController saveController;
+		[SerializeField] private DynamicBox.Managers.GameManager gameManager;
+		[SerializeField] private GameObject rawImage;
+		[SerializeField] private GameObject rightPanel;
 		[SerializeField] private Image letterImage;
 		[SerializeField] private Button previousButton;
 		[SerializeField] private Button nextButton;
@@ -23,20 +29,51 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private AudioClip[] lebaneseSounds;
 		[SerializeField] private AudioClip[] currentSounds;
 
-		[Header("Letter videos")]
+		[Header ("Letter videos")] 
 		[SerializeField] private VideoPlayer videoPlayer;
 		[SerializeField] private VideoClip[] backgroundVideos;
 
 		[SerializeField] private int currentLetterIndex;
 
 		#region Unity Methods
-
-		void Start ()
+		
+		void OnEnable ()
 		{
-			SetBackgroundVideo ();
+			StartCoroutine (OnEnabledDelayed ());
 		}
 
-		void OnEnable ()
+		void Update ()
+		{
+			if (currentLetterIndex == 0)
+			{
+				previousButton.interactable = false;
+			}
+			else if (currentLetterIndex == letters.Length - 1)
+			{
+				nextButton.interactable = false;
+			}
+			else
+			{
+				previousButton.interactable = true;
+				nextButton.interactable = true;
+			}
+		}
+
+		#endregion
+		
+		private IEnumerator OnEnabledDelayed ()
+		{
+			SetSounds ();
+			
+			yield return new WaitForSeconds (.2f);
+			
+			// refresh first unfinished letter index
+			currentLetterIndex = saveController.FindFirstUnfinishedLetter ();
+			
+			ShowLetter ();
+		}
+
+		private void SetSounds ()
 		{
 			switch (PlayerPrefs.GetInt ("DialectIndex"))
 			{
@@ -58,25 +95,6 @@ namespace DynamicBox.UI.ViewControllers
 			}
 		}
 
-		void Update ()
-		{
-			if (currentLetterIndex == 0)
-			{
-				previousButton.interactable = false;
-			}
-			else if (currentLetterIndex == letters.Length - 1)
-			{
-				nextButton.interactable = false;
-			}
-			else
-			{
-				previousButton.interactable = true;
-				nextButton.interactable = true;
-			}
-		}
-
-		#endregion
-
 		public void ShowPreviousLetter ()
 		{
 			currentLetterIndex--;
@@ -97,33 +115,58 @@ namespace DynamicBox.UI.ViewControllers
 
 		private void ShowLetter ()
 		{
-			PlayerPrefs.SetInt ("LetterIndex", currentLetterIndex);
 			letterImage.sprite = letters[currentLetterIndex];
 
 			if (audioSource.isPlaying)
 			{
 				audioSource.Stop ();
 			}
+
 			audioSource.PlayOneShot (currentSounds[currentLetterIndex]);
 
-			SetBackgroundVideo ();
+			// Check if selected current letter is finished or not
+			bool isCompleted = saveController.CheckIfLetterFinished (currentLetterIndex);
+			
+			if (isCompleted)
+			{
+				SetBackgroundVideo (currentLetterIndex);
+				gameManager.DestroyShape ();
+			}
+			else
+			{
+				rawImage.SetActive (false);
+				rightPanel.SetActive (false);
+				gameManager.CreateShape (currentLetterIndex);
+			}
 		}
 
-		// Doozy => Game Event
+		// Doozy Game Event
 		public void PlaySoundOnShowView ()
 		{
-			// Debug.Log ("PlaySoundOnShowView");
-			audioSource.PlayOneShot (currentSounds[currentLetterIndex]);
+			currentLetterIndex = saveController.FirstUnfinishedLetterIndex;
 		}
 
-		private void SetBackgroundVideo ()
+		public void SetLetterFinished (int index)
+		{
+			saveController.SetLetterFinished (index);
+			SetLetterImage (index);
+			SetBackgroundVideo (index);
+		}
+
+		public void SetLetterImage (int index)
+		{
+			letterImage.sprite = letters[index];
+		}
+
+		public void SetBackgroundVideo (int index)
 		{
 			videoPlayer.Stop ();
 
-			videoPlayer.clip = backgroundVideos[currentLetterIndex];
-			
+			videoPlayer.clip = backgroundVideos[index];
+
+			rawImage.SetActive (true);
+			rightPanel.SetActive (true);
 			videoPlayer.Play ();
-			// videoPlayer.isLooping = true;
 		}
 	}
 }

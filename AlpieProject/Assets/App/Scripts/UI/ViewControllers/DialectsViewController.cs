@@ -5,6 +5,7 @@ namespace DynamicBox.UI.ViewControllers
 {
 	public class DialectsViewController : MonoBehaviour
 	{
+		[Header("Links")]
 		[SerializeField] private TMP_Dropdown dialectDropdown;
 		[SerializeField] private TextMeshProUGUI soundText;
 
@@ -45,7 +46,7 @@ namespace DynamicBox.UI.ViewControllers
 
 		public void ShowLetters ()
 		{
-			PlayerPrefs.SetInt ("LetterIndex", 0);
+			// PlayerPrefs.SetInt ("LetterIndex", 0);
 		}
 
 		public void MuteSound ()

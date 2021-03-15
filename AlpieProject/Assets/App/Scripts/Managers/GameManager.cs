@@ -1,18 +1,22 @@
 using System;
 using System.Collections.Generic;
+using DynamicBox.Controllers;
+using DynamicBox.UI.ViewControllers;
 using EnglishTracingBook;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace DynamicBox.Managers
 {
 	public class GameManager : MonoBehaviour
 	{
-		[Header ("Parameters")] 
+		[Header ("Parameters")]
 		[SerializeField] private bool isTestMode;
 
 		[Header ("Links")]
+		[SerializeField] private LettersViewController lettersViewController;
+		
+		[Space]
 		[SerializeField] private GameObject testShapePrefab;
 		[SerializeField] private Color paintColor;
 		[SerializeField] private GameObject[] letterPrefabs;
@@ -203,8 +207,10 @@ namespace DynamicBox.Managers
 		}
 
 		// Create new shape.
-		public void CreateShape ()
+		public void CreateShape (int index = 0)
 		{
+			letterIndex = index;
+
 			CompoundShape currentCompoundShape = FindObjectOfType<CompoundShape> ();
 			if (currentCompoundShape != null)
 			{
@@ -228,7 +234,7 @@ namespace DynamicBox.Managers
 				}
 				else
 				{
-					letterIndex = PlayerPrefs.GetInt ("LetterIndex");
+					// letterIndex = PlayerPrefs.GetInt ("LetterIndex");
 
 					shapeGameObject = Instantiate (letterPrefabs[letterIndex], Vector3.zero, Quaternion.identity);
 				}
@@ -263,6 +269,15 @@ namespace DynamicBox.Managers
 			// shape.Spell ();
 
 			EnableGameManager ();
+		}
+
+		public void DestroyShape ()
+		{
+			Shape shapeComponent = FindObjectOfType<Shape> ();
+			if (shapeComponent != null)
+			{
+				DestroyImmediate (shapeComponent.gameObject);
+			}
 		}
 
 		// Draw the hand.
@@ -449,7 +464,10 @@ namespace DynamicBox.Managers
 					PlayCorrectSFX ();
 				}
 
-				shape.ShowPathNumbers (shape.GetCurrentPathIndex ());
+				if (shape != null)
+				{
+					shape.ShowPathNumbers (shape.GetCurrentPathIndex ());
+				}
 
 				hit2d = Physics2D.Raycast (GetCurrentPlatformClickPosition (Camera.main), Vector2.zero);
 				if (hit2d.collider != null)
@@ -485,6 +503,8 @@ namespace DynamicBox.Managers
 		// On shape completed event.
 		private void OnShapeComplete ()
 		{
+			lettersViewController.SetLetterFinished (letterIndex);
+
 			Debug.Log ("Shape completed");
 
 			bool allDone = true;
@@ -527,6 +547,8 @@ namespace DynamicBox.Managers
 			{
 				PlayCorrectSFX ();
 			}
+
+			DestroyShape ();
 		}
 
 		// Save the status of the shape(stars,path colors).
@@ -649,7 +671,7 @@ namespace DynamicBox.Managers
 			// 		return;
 			// 		// break;
 			// }
-			
+
 			if (path != null)
 				path.Reset ();
 			ReleasePath ();
