@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 namespace DynamicBox.Controllers
@@ -7,52 +8,81 @@ namespace DynamicBox.Controllers
 	{
 		public TextMeshProUGUI text;
 		public Transform rocket;
-		
+
 		private Vector2 fingerDown;
 		private Vector2 fingerUp;
 		public bool detectSwipeOnlyAfterRelease = false;
 
-		public float SWIPE_THRESHOLD = 20f;
+		public float swipeThreshold = 20f;
+		public float distanceMagnitudeThreshold = 1;
+		public float turnSpeed;
 
-		// Update is called once per frame
+		private Vector3 oldPos;
+		private Vector3 oldDirection;
+
 		void Update ()
 		{
-			foreach (Touch touch in Input.touches)
+			if (Input.GetMouseButton (0))
 			{
-				if (touch.phase == TouchPhase.Began)
+				if ((Input.mousePosition - oldPos).normalized.magnitude < distanceMagnitudeThreshold)
 				{
-					fingerUp = touch.position;
-					fingerDown = touch.position;
-				}
+					Debug.Log (Input.mousePosition - oldPos);
+					// Debug.Log ((Input.mousePosition - oldPos).normalized.magnitude);
 
-				//Detects Swipe while finger is still moving
-				if (touch.phase == TouchPhase.Moved)
-				{
-					if (!detectSwipeOnlyAfterRelease)
-					{
-						fingerDown = touch.position;
-						checkSwipe ();
-					}
-				}
+					float angle = Mathf.Atan2 (oldPos.y - Input.mousePosition.y, oldPos.x - Input.mousePosition.x) * Mathf.Rad2Deg;
 
-				//Detects swipe after finger is released
-				if (touch.phase == TouchPhase.Ended)
-				{
-					fingerDown = touch.position;
-					checkSwipe ();
+					// Debug.Log ("angle = " + angle);
+
+					rocket.transform.eulerAngles = new Vector3 (0, 0, angle);
+
+					// rocket.transform.rotation = Quaternion.Slerp (rocket.transform.rotation, new Quaternion (0, 0, angle, float.Epsilon), turnSpeed * Time.deltaTime);
+					// rocket.transform.rotation = Quaternion.Euler (0,0, Mathf.Lerp (oldAngle, angle, turnSpeed * Time.deltaTime));
+
+					// Quaternion targetRotation = Quaternion.Euler (new Vector3 ((Input.mousePosition - oldPos).x, (Input.mousePosition - oldPos).y, angle));
+					// rocket.transform.rotation = Quaternion.Slerp (rocket.transform.rotation, targetRotation, Time.time * turnSpeed);
+					// Debug.Log ("targetRotation = " + targetRotation);
+
+					// oldAngle = angle;
+					oldPos = Input.mousePosition;
+					oldDirection = Input.mousePosition - oldPos;
 				}
 			}
+
+			// foreach (Touch touch in Input.touches)
+			// {
+			// 	if (touch.phase == TouchPhase.Began)
+			// 	{
+			// 		fingerUp = touch.position;
+			// 		fingerDown = touch.position;
+			// 	}
+			//
+			// 	//Detects Swipe while finger is still moving
+			// 	if (touch.phase == TouchPhase.Moved)
+			// 	{
+			// 		if (!detectSwipeOnlyAfterRelease)
+			// 		{
+			// 			fingerDown = touch.position;
+			// 			checkSwipe ();
+			// 		}
+			// 	}
+			//
+			// 	//Detects swipe after finger is released
+			// 	if (touch.phase == TouchPhase.Ended)
+			// 	{
+			// 		fingerDown = touch.position;
+			// 		checkSwipe ();
+			// 	}
+			// }
 		}
 
 		void checkSwipe ()
 		{
 			//Check if Vertical swipe
-			if (verticalMove () > SWIPE_THRESHOLD && verticalMove () > horizontalValMove ())
+			if (verticalMove () > swipeThreshold && verticalMove () > horizontalValMove ())
 			{
 				//Debug.Log("Vertical");
 				if (fingerDown.y - fingerUp.y > 0) //up swipe
 				{
-					
 					OnSwipeUp ();
 				}
 				else if (fingerDown.y - fingerUp.y < 0) //Down swipe
@@ -64,7 +94,7 @@ namespace DynamicBox.Controllers
 			}
 
 			//Check if Horizontal swipe
-			else if (horizontalValMove () > SWIPE_THRESHOLD && horizontalValMove () > verticalMove ())
+			else if (horizontalValMove () > swipeThreshold && horizontalValMove () > verticalMove ())
 			{
 				//Debug.Log("Horizontal");
 				if (fingerDown.x - fingerUp.x > 0) //Right swipe
@@ -96,7 +126,7 @@ namespace DynamicBox.Controllers
 			return Mathf.Abs (fingerDown.x - fingerUp.x);
 		}
 
-		//////////////////////////////////CALLBACK FUNCTIONS/////////////////////////////
+		// Callback functions
 		void OnSwipeUp ()
 		{
 			Debug.Log ("Swipe Up");

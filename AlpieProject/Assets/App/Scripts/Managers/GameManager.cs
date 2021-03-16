@@ -338,6 +338,11 @@ namespace DynamicBox.Managers
 			RectTransformUtility.ScreenPointToLocalPointInRectangle(myCanvas.transform as RectTransform, Input.mousePosition, myCanvas.worldCamera, out Vector2 pos);
 			rocket.transform.position = myCanvas.transform.TransformPoint(pos);
 			
+			if (!RectTransformUtility.RectangleContainsScreenPoint(shape.GetComponent<RectTransform>(), Input.mousePosition, Camera.main))
+			{
+				rocket.SetActive(false);
+			}
+			
 			clickPostion = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
 			direction = clickPostion - path.transform.position;
@@ -404,6 +409,11 @@ namespace DynamicBox.Managers
 			rocket.SetActive (true);
 			RectTransformUtility.ScreenPointToLocalPointInRectangle(myCanvas.transform as RectTransform, Input.mousePosition, myCanvas.worldCamera, out Vector2 pos);
 			rocket.transform.position = myCanvas.transform.TransformPoint(pos);
+			
+			if (!RectTransformUtility.RectangleContainsScreenPoint(shape.GetComponent<RectTransform>(), Input.mousePosition, Camera.main))
+			{
+				rocket.SetActive(false);
+			}
 			
 			clickPostion = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 

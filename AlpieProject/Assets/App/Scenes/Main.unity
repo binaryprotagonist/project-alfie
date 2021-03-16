@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2000, y: 1200}
+  m_AnchoredPosition: {x: 2000, y: 1500}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1053186
@@ -1457,7 +1457,9 @@ MonoBehaviour:
   text: {fileID: 2035365511}
   rocket: {fileID: 778485531}
   detectSwipeOnlyAfterRelease: 0
-  SWIPE_THRESHOLD: 20
+  swipeThreshold: 20
+  distanceMagnitudeThreshold: 1
+  turnSpeed: 1
 --- !u!4 &407745840
 Transform:
   m_ObjectHideFlags: 0
@@ -1918,7 +1920,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1200}
+  m_AnchoredPosition: {x: 0, y: 1500}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &596775294
