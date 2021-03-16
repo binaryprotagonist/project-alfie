@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using DynamicBox.Controllers;
+using DynamicBox.EventManagement;
+using DynamicBox.EventManagement.GameEvents;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -12,6 +15,7 @@ namespace DynamicBox.UI.ViewControllers
 		[Header ("Links")]
 		[SerializeField] private SaveController saveController;
 		[SerializeField] private DynamicBox.Managers.GameManager gameManager;
+		[SerializeField] private GameObject iapPanel;
 		[SerializeField] private GameObject rawImage;
 		[SerializeField] private GameObject rightPanel;
 		[SerializeField] private Image letterImage;
@@ -36,10 +40,17 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private int currentLetterIndex;
 
 		#region Unity Methods
-		
+
 		void OnEnable ()
 		{
 			StartCoroutine (OnEnabledDelayed ());
+
+			EventManager.Instance.AddListener<UnlockSuccessfulEvent> (UnlockSuccessfulEventHandler);
+		}
+
+		private void OnDisable ()
+		{
+			EventManager.Instance.RemoveListener<UnlockSuccessfulEvent> (UnlockSuccessfulEventHandler);
 		}
 
 		void Update ()
@@ -115,6 +126,12 @@ namespace DynamicBox.UI.ViewControllers
 
 		private void ShowLetter ()
 		{
+			if (currentLetterIndex == 3 && PlayerPrefs.GetInt ("UnlockPurchased") == 0)
+			{
+				iapPanel.SetActive (true);
+				return;
+			}
+			
 			letterImage.sprite = letters[currentLetterIndex];
 
 			if (audioSource.isPlaying)
@@ -153,12 +170,12 @@ namespace DynamicBox.UI.ViewControllers
 			SetBackgroundVideo (index);
 		}
 
-		public void SetLetterImage (int index)
+		private void SetLetterImage (int index)
 		{
 			letterImage.sprite = letters[index];
 		}
 
-		public void SetBackgroundVideo (int index)
+		private void SetBackgroundVideo (int index)
 		{
 			videoPlayer.Stop ();
 
@@ -168,5 +185,16 @@ namespace DynamicBox.UI.ViewControllers
 			rightPanel.SetActive (true);
 			videoPlayer.Play ();
 		}
+
+		#region Event Handlers
+
+		private void UnlockSuccessfulEventHandler (UnlockSuccessfulEvent eventDetails)
+		{
+			iapPanel.SetActive (false);
+			currentLetterIndex = 3;
+			ShowLetter ();
+		}
+
+		#endregion
 	}
 }

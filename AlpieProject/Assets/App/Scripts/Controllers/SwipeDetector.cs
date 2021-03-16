@@ -26,9 +26,6 @@ namespace DynamicBox.Controllers
 			{
 				if ((Input.mousePosition - oldPos).normalized.magnitude < distanceMagnitudeThreshold)
 				{
-					Debug.Log (Input.mousePosition - oldPos);
-					// Debug.Log ((Input.mousePosition - oldPos).normalized.magnitude);
-
 					float angle = Mathf.Atan2 (oldPos.y - Input.mousePosition.y, oldPos.x - Input.mousePosition.x) * Mathf.Rad2Deg;
 
 					// Debug.Log ("angle = " + angle);
