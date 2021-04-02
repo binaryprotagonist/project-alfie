@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Doozy.Engine.UI;
 using DynamicBox.Controllers;
 using DynamicBox.EventManagement;
 using DynamicBox.EventManagement.GameEvents;
@@ -82,6 +83,12 @@ namespace DynamicBox.UI.ViewControllers
 			currentLetterIndex = saveController.FindFirstUnfinishedLetter ();
 			
 			ShowLetter ();
+		}
+
+		public void ToDialectsView ()
+		{
+			UIView.HideView ("Menu","Letters");
+			UIView.ShowView ("Menu","Dialects");
 		}
 
 		private void SetSounds ()

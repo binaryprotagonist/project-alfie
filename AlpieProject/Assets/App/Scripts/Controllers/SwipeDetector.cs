@@ -22,54 +22,54 @@ namespace DynamicBox.Controllers
 
 		void Update ()
 		{
-			if (Input.GetMouseButton (0))
-			{
-				if ((Input.mousePosition - oldPos).normalized.magnitude < distanceMagnitudeThreshold)
-				{
-					float angle = Mathf.Atan2 (oldPos.y - Input.mousePosition.y, oldPos.x - Input.mousePosition.x) * Mathf.Rad2Deg;
-
-					// Debug.Log ("angle = " + angle);
-
-					rocket.transform.eulerAngles = new Vector3 (0, 0, angle);
-
-					// rocket.transform.rotation = Quaternion.Slerp (rocket.transform.rotation, new Quaternion (0, 0, angle, float.Epsilon), turnSpeed * Time.deltaTime);
-					// rocket.transform.rotation = Quaternion.Euler (0,0, Mathf.Lerp (oldAngle, angle, turnSpeed * Time.deltaTime));
-
-					// Quaternion targetRotation = Quaternion.Euler (new Vector3 ((Input.mousePosition - oldPos).x, (Input.mousePosition - oldPos).y, angle));
-					// rocket.transform.rotation = Quaternion.Slerp (rocket.transform.rotation, targetRotation, Time.time * turnSpeed);
-					// Debug.Log ("targetRotation = " + targetRotation);
-
-					// oldAngle = angle;
-					oldPos = Input.mousePosition;
-					oldDirection = Input.mousePosition - oldPos;
-				}
-			}
-
-			// foreach (Touch touch in Input.touches)
+			// if (Input.GetMouseButton (0))
 			// {
-			// 	if (touch.phase == TouchPhase.Began)
+			// 	if ((Input.mousePosition - oldPos).normalized.magnitude < distanceMagnitudeThreshold)
 			// 	{
-			// 		fingerUp = touch.position;
-			// 		fingerDown = touch.position;
-			// 	}
+			// 		float angle = Mathf.Atan2 (oldPos.y - Input.mousePosition.y, oldPos.x - Input.mousePosition.x) * Mathf.Rad2Deg;
 			//
-			// 	//Detects Swipe while finger is still moving
-			// 	if (touch.phase == TouchPhase.Moved)
-			// 	{
-			// 		if (!detectSwipeOnlyAfterRelease)
-			// 		{
-			// 			fingerDown = touch.position;
-			// 			checkSwipe ();
-			// 		}
-			// 	}
+			// 		// Debug.Log ("angle = " + angle);
 			//
-			// 	//Detects swipe after finger is released
-			// 	if (touch.phase == TouchPhase.Ended)
-			// 	{
-			// 		fingerDown = touch.position;
-			// 		checkSwipe ();
+			// 		rocket.transform.eulerAngles = new Vector3 (0, 0, angle);
+			//
+			// 		// rocket.transform.rotation = Quaternion.Slerp (rocket.transform.rotation, new Quaternion (0, 0, angle, float.Epsilon), turnSpeed * Time.deltaTime);
+			// 		// rocket.transform.rotation = Quaternion.Euler (0,0, Mathf.Lerp (oldAngle, angle, turnSpeed * Time.deltaTime));
+			//
+			// 		// Quaternion targetRotation = Quaternion.Euler (new Vector3 ((Input.mousePosition - oldPos).x, (Input.mousePosition - oldPos).y, angle));
+			// 		// rocket.transform.rotation = Quaternion.Slerp (rocket.transform.rotation, targetRotation, Time.time * turnSpeed);
+			// 		// Debug.Log ("targetRotation = " + targetRotation);
+			//
+			// 		// oldAngle = angle;
+			// 		oldPos = Input.mousePosition;
+			// 		oldDirection = Input.mousePosition - oldPos;
 			// 	}
 			// }
+
+			foreach (Touch touch in Input.touches)
+			{
+				if (touch.phase == TouchPhase.Began)
+				{
+					fingerUp = touch.position;
+					fingerDown = touch.position;
+				}
+			
+				//Detects Swipe while finger is still moving
+				if (touch.phase == TouchPhase.Moved)
+				{
+					if (!detectSwipeOnlyAfterRelease)
+					{
+						fingerDown = touch.position;
+						checkSwipe ();
+					}
+				}
+			
+				//Detects swipe after finger is released
+				if (touch.phase == TouchPhase.Ended)
+				{
+					fingerDown = touch.position;
+					checkSwipe ();
+				}
+			}
 		}
 
 		void checkSwipe ()
