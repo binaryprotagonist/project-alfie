@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iapData:
   - _title: Unlock all letters
-    _price: 0.99
-    _storeID: net.dynamicbox.alpie.unlock_all_letters
+    _price: 1.99
+    _storeID: net.dynamicbox.alpieproject.unlock_all_letters
     _isConsumable: 0

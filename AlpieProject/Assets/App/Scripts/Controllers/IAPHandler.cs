@@ -2,7 +2,6 @@
 using DynamicBox.EventManagement;
 using DynamicBox.EventManagement.GameEvents;
 using DynamicBox.ScriptableObjects;
-using TMPro;
 using UnityEngine;
 
 namespace DynamicBox.Controllers
@@ -12,20 +11,9 @@ namespace DynamicBox.Controllers
 		[Header ("Parameters")] 
 		[SerializeField] private IAPData macAppStoreIAPData;
 
-		[SerializeField] private TextMeshProUGUI unlockButtonText;
-
-		private const string kUnlockAllLetters = "net.dynamicbox.alpie.unlock_all_letters";
+		private const string kUnlockAllLetters = "net.dynamicbox.alpieproject.unlock_all_letters";
 
 		private string resultInfo;
-
-		#region Unity Methods
-
-		void Start ()
-		{
-			unlockButtonText.text = $"{macAppStoreIAPData.IApData[0].Title} {macAppStoreIAPData.IApData[0].Price}$";
-		}
-
-		#endregion
 		
 		public void UnlockAllLetters ()
 		{
@@ -51,7 +39,6 @@ namespace DynamicBox.Controllers
 			switch (productId)
 			{
 				case kUnlockAllLetters:
-					PlayerPrefs.SetInt ("UnlockPurchased", 1);
 					resultInfo = "Unlock all letters purchase successful";
 					Debug.Log (resultInfo);
 					

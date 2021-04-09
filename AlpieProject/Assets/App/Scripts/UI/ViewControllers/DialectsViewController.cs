@@ -1,19 +1,22 @@
-﻿using Doozy.Engine.UI;
+﻿using System.Collections.Generic;
+using Doozy.Engine.UI;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace DynamicBox.UI.ViewControllers
 {
 	public class DialectsViewController : MonoBehaviour
 	{
-		[Header("Links")]
-		[SerializeField] private TMP_Dropdown dialectDropdown;
+		[Header ("Links")] 
 		[SerializeField] private Image soundButtonImage;
 		[SerializeField] private Sprite soundOnSprite;
 		[SerializeField] private Sprite soundOffSprite;
-		[SerializeField] private GameObject dropdownBGImage;
+		[SerializeField] private TextMeshProUGUI languagePanelOpener;
+		[SerializeField] private List<GameObject> languageButtons;
+
+		private readonly List<string> languageButtonsTextList = new List<string> {"Egyptian", "Fosha", "Jordanian", "Lebanese"};
+		private bool isLanguageButtonsShowing;
 
 		private string mute;
 
@@ -21,7 +24,7 @@ namespace DynamicBox.UI.ViewControllers
 
 		void OnEnable ()
 		{
-			dialectDropdown.value = PlayerPrefs.GetInt ("DialectIndex");
+			languagePanelOpener.text = languageButtonsTextList[PlayerPrefs.GetInt ("DialectIndex")];
 
 			if (IsMuted ())
 			{
@@ -37,54 +40,36 @@ namespace DynamicBox.UI.ViewControllers
 			}
 		}
 
-		void Start ()
-		{
-			dialectDropdown.onValueChanged.AddListener (delegate { DropdownValueChanged (dialectDropdown); });
-		}
-
-		void Update ()
-		{
-			if (Input.GetMouseButtonDown (0))
-			{
-				// Check if the mouse was clicked over a UI element
-				if (EventSystem.current.IsPointerOverGameObject ())
-				{
-					// Debug.Log ("Clicked on the UI");
-					// Debug.Log ("name = " + EventSystem.current.currentSelectedGameObject.name);
-					if (EventSystem.current.currentSelectedGameObject.name.Equals ("Blocker"))
-					{
-						dropdownBGImage.SetActive(false);
-					}
-				}
-			}
-			
-			HideIfClickedOutside (dialectDropdown.gameObject);
-		}
-
 		#endregion
-		
-		private void HideIfClickedOutside(GameObject panel) 
+
+		public void LanguageButtonClicked ()
 		{
-			if (Input.GetMouseButton(0) && panel.activeSelf && !RectTransformUtility.RectangleContainsScreenPoint(panel.GetComponent<RectTransform>(), Input.mousePosition, Camera.main)) 
-			{
-				dropdownBGImage.SetActive(false);
-			}
+			ShowLanguageButtons (!isLanguageButtonsShowing);
+
+			isLanguageButtonsShowing = !isLanguageButtonsShowing;
 		}
 
-		private void DropdownValueChanged (TMP_Dropdown change)
+		public void SelectLanguage (int index)
 		{
-			Debug.Log ("Selected dialect : " + change.value);
-			PlayerPrefs.SetInt ("DialectIndex", change.value);
-			
-			dropdownBGImage.SetActive (false);
-			
+			isLanguageButtonsShowing = false;
+
+			languagePanelOpener.text = languageButtonsTextList[index];
+
+			ShowLanguageButtons (false);
+
+			Debug.Log ("Selected dialect index = " + index);
+			PlayerPrefs.SetInt ("DialectIndex", index);
+
 			UIView.HideView ("Menu","Dialects");
 			UIView.ShowView ("Menu","Letters");
 		}
 
-		public void ShowLetters ()
+		private void ShowLanguageButtons (bool value)
 		{
-			// PlayerPrefs.SetInt ("LetterIndex", 0);
+			foreach (GameObject languageButton in languageButtons)
+			{
+				languageButton.SetActive (value);
+			}
 		}
 
 		public void MuteSound ()

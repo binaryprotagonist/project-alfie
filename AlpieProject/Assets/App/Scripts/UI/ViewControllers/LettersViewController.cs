@@ -91,6 +91,13 @@ namespace DynamicBox.UI.ViewControllers
 			UIView.ShowView ("Menu","Dialects");
 		}
 
+		public void CancelIAPDialog ()
+		{
+			iapPanel.SetActive (false);
+			currentLetterIndex = 0;
+			ShowLetter ();
+		}
+
 		private void SetSounds ()
 		{
 			switch (PlayerPrefs.GetInt ("DialectIndex"))
@@ -127,18 +134,27 @@ namespace DynamicBox.UI.ViewControllers
 
 		public void ShowRandomLetter ()
 		{
-			currentLetterIndex = Random.Range (0, letters.Length);
+			bool isUnlockPurchased = PlayerPrefs.GetInt ("UnlockPurchased") == 0;
+			int maxIndex = isUnlockPurchased ? 3 : letters.Length;
+
+			currentLetterIndex = Random.Range (0, maxIndex);
 			ShowLetter ();
 		}
 
 		private void ShowLetter ()
 		{
-			if (currentLetterIndex == 3 && PlayerPrefs.GetInt ("UnlockPurchased") == 0)
+			if (currentLetterIndex == 3)
 			{
-				iapPanel.SetActive (true);
-				return;
+				if (PlayerPrefs.GetInt ("UnlockPurchased") == 0)
+				{
+					Debug.Log ("All letters are not unlocked");
+					iapPanel.SetActive (true);
+					return;
+				}
+
+				Debug.Log ("All letters are unlocked");
 			}
-			
+
 			letterImage.sprite = letters[currentLetterIndex];
 
 			if (audioSource.isPlaying)
@@ -197,6 +213,7 @@ namespace DynamicBox.UI.ViewControllers
 
 		private void UnlockSuccessfulEventHandler (UnlockSuccessfulEvent eventDetails)
 		{
+			PlayerPrefs.SetInt ("UnlockPurchased", 1);
 			iapPanel.SetActive (false);
 			currentLetterIndex = 3;
 			ShowLetter ();
