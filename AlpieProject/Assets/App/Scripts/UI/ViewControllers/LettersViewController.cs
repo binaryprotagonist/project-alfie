@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Doozy.Engine.UI;
 using DynamicBox.Controllers;
 using DynamicBox.EventManagement;
 using DynamicBox.EventManagement.GameEvents;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -16,6 +16,11 @@ namespace DynamicBox.UI.ViewControllers
 		[Header ("Links")]
 		[SerializeField] private SaveController saveController;
 		[SerializeField] private DynamicBox.Managers.GameManager gameManager;
+		[SerializeField] private GameObject agePanel;
+		[SerializeField] private TMP_InputField dayInputField;
+		[SerializeField] private TMP_InputField monthInputField;
+		[SerializeField] private TMP_InputField yearInputField;
+		[SerializeField] private Button confirmAgeButton;
 		[SerializeField] private GameObject iapPanel;
 		[SerializeField] private GameObject rawImage;
 		[SerializeField] private GameObject rightPanel;
@@ -39,6 +44,8 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private VideoClip[] backgroundVideos;
 
 		[SerializeField] private int currentLetterIndex;
+
+		private bool allowEnableConfirmAgeButton = true;
 
 		#region Unity Methods
 
@@ -69,6 +76,13 @@ namespace DynamicBox.UI.ViewControllers
 				previousButton.interactable = true;
 				nextButton.interactable = true;
 			}
+			
+			if (allowEnableConfirmAgeButton && dayInputField.text.Length > 0 && monthInputField.text.Length > 0 && yearInputField.text.Length > 3)
+			{
+				confirmAgeButton.interactable = true;
+				
+				allowEnableConfirmAgeButton = false;
+			}
 		}
 
 		#endregion
@@ -95,6 +109,12 @@ namespace DynamicBox.UI.ViewControllers
 		{
 			iapPanel.SetActive (false);
 			currentLetterIndex = 0;
+			
+			dayInputField.text = string.Empty;
+			monthInputField.text = string.Empty;
+			yearInputField.text = string.Empty;
+			confirmAgeButton.interactable = false;
+			
 			ShowLetter ();
 		}
 
@@ -141,6 +161,12 @@ namespace DynamicBox.UI.ViewControllers
 			ShowLetter ();
 		}
 
+		public void ConfirmAge ()
+		{
+			agePanel.SetActive (false);
+			iapPanel.SetActive (true);
+		}
+
 		private void ShowLetter ()
 		{
 			if (currentLetterIndex == 3)
@@ -148,7 +174,7 @@ namespace DynamicBox.UI.ViewControllers
 				if (PlayerPrefs.GetInt ("UnlockPurchased") == 0)
 				{
 					Debug.Log ("All letters are not unlocked");
-					iapPanel.SetActive (true);
+					agePanel.SetActive (true);
 					return;
 				}
 
