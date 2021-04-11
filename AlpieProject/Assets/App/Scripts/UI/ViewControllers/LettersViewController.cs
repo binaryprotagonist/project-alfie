@@ -154,8 +154,8 @@ namespace DynamicBox.UI.ViewControllers
 
 		public void ShowRandomLetter ()
 		{
-			bool isUnlockPurchased = PlayerPrefs.GetInt ("UnlockPurchased") == 0;
-			int maxIndex = isUnlockPurchased ? 3 : letters.Length;
+			bool isUnlockPurchased = PlayerPrefs.GetInt ("UnlockPurchased") == 1;
+			int maxIndex = isUnlockPurchased ? letters.Length : 3;
 
 			currentLetterIndex = Random.Range (0, maxIndex);
 			ShowLetter ();
