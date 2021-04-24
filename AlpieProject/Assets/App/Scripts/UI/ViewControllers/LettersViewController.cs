@@ -44,6 +44,7 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private VideoClip[] backgroundVideos;
 
 		[SerializeField] private int currentLetterIndex;
+		public int CurrentLetterIndex => currentLetterIndex;
 
 		private bool allowEnableConfirmAgeButton = true;
 
@@ -200,10 +201,15 @@ namespace DynamicBox.UI.ViewControllers
 			}
 			else
 			{
-				rawImage.SetActive (false);
-				rightPanel.SetActive (false);
-				gameManager.CreateShape (currentLetterIndex);
+				ShowCurrentLetter ();
 			}
+		}
+
+		public void ShowCurrentLetter ()
+		{
+			rawImage.SetActive (false);
+			rightPanel.SetActive (false);
+			gameManager.CreateShape (currentLetterIndex);
 		}
 
 		// Doozy Game Event

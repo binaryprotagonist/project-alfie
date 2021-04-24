@@ -209,6 +209,11 @@ namespace DynamicBox.Managers
 				}
 		}
 
+		public void SwitchBackToShape ()
+		{
+			lettersViewController.ShowCurrentLetter ();
+		}
+		
 		// Create new shape.
 		public void CreateShape (int index = 0)
 		{

@@ -16,7 +16,8 @@ namespace DynamicBox.Managers
 		private IEnumerator CreateShapeDelayed ()
 		{
 			yield return new WaitForSeconds (0.2f);
-			// gameManager.CreateShape ();
+			
+			gameManager.SwitchBackToShape ();
 		}
 	}
 }
