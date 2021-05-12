@@ -20,6 +20,11 @@ namespace DynamicBox.Controllers
 			EventManager.Instance.Raise (new BuyIAPItemEvent (kUnlockAllLetters));
 		}
 
+		public void RestorePurchases ()
+		{
+			EventManager.Instance.Raise (new RestorePurchasesEvent ());
+		}
+
 		#region Callbacks
 
 		public void OnInitialized (bool value)

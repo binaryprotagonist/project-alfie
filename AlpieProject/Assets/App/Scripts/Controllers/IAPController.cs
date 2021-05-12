@@ -35,11 +35,13 @@ namespace DynamicBox.Controllers
 		void OnEnable ()
 		{
 			EventManager.Instance.AddListener<BuyIAPItemEvent> (BuyIAPItemEventHandler);
+			EventManager.Instance.AddListener<RestorePurchasesEvent> (RestorePurchasesHandler);
 		}
 
 		void OnDisable ()
 		{
 			EventManager.Instance.RemoveListener<BuyIAPItemEvent> (BuyIAPItemEventHandler);
+			EventManager.Instance.RemoveListener<RestorePurchasesEvent> (RestorePurchasesHandler);
 		}
 
 		#endregion
@@ -229,6 +231,18 @@ namespace DynamicBox.Controllers
 					// The first phase of restoration. If no more responses are received on ProcessPurchase then 
 					// no purchases are available to be restored.
 					Debug.Log ("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
+					
+					if (result) {
+						// This does not mean anything was restored,
+						// merely that the restoration process succeeded.
+						
+						string kUnlockAllLetters = "net.dynamicbox.alpieproject.unlock_all_letters";
+						
+						OnPurchaseSucceed?.Invoke (kUnlockAllLetters);
+						
+					} else {
+						// Restoration failed.
+					}
 				});
 			}
 			// Otherwise ...
@@ -244,6 +258,11 @@ namespace DynamicBox.Controllers
 		private void BuyIAPItemEventHandler (BuyIAPItemEvent eventDetails)
 		{
 			BuyProduct (eventDetails.ProductID);
+		}
+
+		private void RestorePurchasesHandler (RestorePurchasesEvent eventDetails)
+		{
+			RestorePurchases ();
 		}
 
 		#endregion
