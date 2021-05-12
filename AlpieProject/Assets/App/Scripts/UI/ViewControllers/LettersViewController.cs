@@ -1,8 +1,10 @@
 ﻿using System.Collections;
+using DG.Tweening;
 using Doozy.Engine.UI;
 using DynamicBox.Controllers;
 using DynamicBox.EventManagement;
 using DynamicBox.EventManagement.GameEvents;
+using DynamicBox.Helpers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +29,10 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private Image letterImage;
 		[SerializeField] private Button previousButton;
 		[SerializeField] private Button nextButton;
+
+		[Space]
+		[SerializeField] private HapticFeedback hapticFeedback;
+		[SerializeField] private ParticleSystem confettiParticlePrefab;
 
 		[Header ("Letter images")]
 		[SerializeField] private Sprite[] letters;
@@ -223,6 +229,12 @@ namespace DynamicBox.UI.ViewControllers
 			saveController.SetLetterFinished (index);
 			SetLetterImage (index);
 			SetBackgroundVideo (index);
+			
+			hapticFeedback.Vibrate ();
+			Instantiate (confettiParticlePrefab, transform);
+			
+			rawImage.GetComponent<RawImage> ().color = Color.clear;
+			rawImage.GetComponent<RawImage> ().DOColor (Color.white, 1);
 		}
 
 		private void SetLetterImage (int index)
