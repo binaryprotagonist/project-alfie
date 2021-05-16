@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Doozy.Engine.UI;
+using DynamicBox.EventManagement;
+using DynamicBox.EventManagement.GameEvents;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -59,6 +61,8 @@ namespace DynamicBox.UI.ViewControllers
 
 			Debug.Log ("Selected dialect index = " + index);
 			PlayerPrefs.SetInt ("DialectIndex", index);
+			
+			EventManager.Instance.Raise (new DialectSelectedEvent (index));
 		}
 
 		public void PlayUsingCurrentDialect ()
