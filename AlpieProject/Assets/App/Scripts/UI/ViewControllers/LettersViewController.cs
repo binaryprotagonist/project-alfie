@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Threading.Tasks;
 using DG.Tweening;
+using Doozy.Engine.Soundy;
 using Doozy.Engine.UI;
 using DynamicBox.Controllers;
 using DynamicBox.EventManagement;
@@ -15,6 +17,12 @@ namespace DynamicBox.UI.ViewControllers
 {
 	public class LettersViewController : MonoBehaviour
 	{
+		[Header ("Parameters")]
+		[SerializeField] private Color[] letterFlagColors;
+
+		[Space]
+		[SerializeField] private AudioClip finishLetterSound;
+		
 		[Header ("Links")]
 		[SerializeField] private SaveController saveController;
 		[SerializeField] private DynamicBox.Managers.GameManager gameManager;
@@ -25,8 +33,14 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private Button confirmAgeButton;
 		[SerializeField] private GameObject iapPanel;
 		[SerializeField] private GameObject rawImage;
+		[SerializeField] private GameObject iapLockedPanel;
+
+		[Space]
 		[SerializeField] private GameObject rightPanel;
+		[SerializeField] private Image letterBackground;
 		[SerializeField] private Image letterImage;
+		
+		[Space]
 		[SerializeField] private Button previousButton;
 		[SerializeField] private Button nextButton;
 
@@ -115,14 +129,14 @@ namespace DynamicBox.UI.ViewControllers
 		public void CancelIAPDialog ()
 		{
 			iapPanel.SetActive (false);
-			currentLetterIndex = 0;
+			// currentLetterIndex = 0;
 			
 			dayInputField.text = string.Empty;
 			monthInputField.text = string.Empty;
 			yearInputField.text = string.Empty;
 			confirmAgeButton.interactable = false;
 			
-			ShowLetter ();
+			// ShowLetter ();
 		}
 
 		private void SetSounds ()
@@ -176,16 +190,31 @@ namespace DynamicBox.UI.ViewControllers
 
 		private void ShowLetter ()
 		{
+			bool isUnlocked = PlayerPrefs.GetInt ("UnlockPurchased") != 0;
 			if (currentLetterIndex == 3)
 			{
-				if (PlayerPrefs.GetInt ("UnlockPurchased") == 0)
+				if (!isUnlocked)
 				{
 					Debug.Log ("All letters are not unlocked");
 					agePanel.SetActive (true);
-					return;
+					
+					// return;
 				}
+				else
+				{
+					Debug.Log ("All letters are unlocked");
+				}
+			}
 
-				Debug.Log ("All letters are unlocked");
+			if (currentLetterIndex >= 3 && !isUnlocked)
+			{
+				iapLockedPanel.SetActive (true);
+				
+				HidePathsAsync ();
+			}
+			else
+			{
+				iapLockedPanel.SetActive (false);
 			}
 
 			letterImage.sprite = letters[currentLetterIndex];
@@ -209,6 +238,13 @@ namespace DynamicBox.UI.ViewControllers
 			{
 				ShowCurrentLetter ();
 			}
+		}
+
+		private async Task HidePathsAsync ()
+		{
+			await Task.Yield ();
+			
+			GameObject.Find ("Paths").SetActive (false);
 		}
 
 		public void ShowCurrentLetter ()
@@ -247,10 +283,13 @@ namespace DynamicBox.UI.ViewControllers
 			videoPlayer.Stop ();
 
 			videoPlayer.clip = backgroundVideos[index];
+			letterBackground.color = letterFlagColors[index];
 
 			rawImage.SetActive (true);
 			rightPanel.SetActive (true);
 			videoPlayer.Play ();
+
+			SoundyManager.Play (finishLetterSound, Vector3.zero);
 		}
 
 		#region Event Handlers

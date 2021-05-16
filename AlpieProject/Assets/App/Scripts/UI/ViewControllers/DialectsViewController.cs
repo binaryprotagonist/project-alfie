@@ -59,7 +59,10 @@ namespace DynamicBox.UI.ViewControllers
 
 			Debug.Log ("Selected dialect index = " + index);
 			PlayerPrefs.SetInt ("DialectIndex", index);
+		}
 
+		public void PlayUsingCurrentDialect ()
+		{
 			UIView.HideView ("Menu","Dialects");
 			UIView.ShowView ("Menu","Letters");
 		}
