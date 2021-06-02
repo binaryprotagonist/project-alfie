@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e8a9b3573b4c7892d0fe19c0756c4a, type: 3}
+  m_Name: 2. Fosha
+  m_EditorClassIdentifier: 
+  _voiceOvers:
+  - {fileID: 8300000, guid: 0a7550ab4eb0f8d4ca2533c9dd9b5134, type: 3}
+  - {fileID: 8300000, guid: 23fd3ab5a79af60419640ecd6e8337fb, type: 3}
+  - {fileID: 8300000, guid: b0da226fe4d146d4d8175a032f69c0ff, type: 3}
+  - {fileID: 8300000, guid: 0eabab4143f34e444839e408efefb6e1, type: 3}
+  - {fileID: 8300000, guid: fb6fd7cd899f7b6428e0ae9bf69c942b, type: 3}
+  - {fileID: 8300000, guid: 84e1a94294316254893fa27cbf4318e2, type: 3}
+  - {fileID: 8300000, guid: 8ebac2993dfcb694197d882e46324b8f, type: 3}
+  - {fileID: 8300000, guid: 4f1c8355790c99b4c970362cd8e4f481, type: 3}

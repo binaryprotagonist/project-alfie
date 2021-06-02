@@ -2,7 +2,7 @@
 using Doozy.Engine.UI;
 using DynamicBox.EventManagement;
 using DynamicBox.EventManagement.GameEvents;
-using TMPro;
+using DynamicBox.EventManagement.GameEvents.VoiceOver;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,14 +10,18 @@ namespace DynamicBox.UI.ViewControllers
 {
 	public class DialectsViewController : MonoBehaviour
 	{
-		[Header ("Links")] 
+		[Header ("Links")]
 		[SerializeField] private Image soundButtonImage;
 		[SerializeField] private Sprite soundOnSprite;
 		[SerializeField] private Sprite soundOffSprite;
-		[SerializeField] private TextMeshProUGUI languagePanelOpener;
+		[SerializeField] private Image languagePanelOpener;
 		[SerializeField] private List<GameObject> languageButtons;
 
-		private readonly List<string> languageButtonsTextList = new List<string> {"Egyptian", "Fosha", "Jordanian", "Lebanese"};
+		[Space]
+		[SerializeField] private List<Sprite> languageButtonsSpriteList;
+
+		// private readonly List<string> languageButtonsTextList = new List<string> {"Egyptian", "Fosha", "Jordanian", "Lebanese"};
+
 		private bool isLanguageButtonsShowing;
 
 		private string mute;
@@ -26,7 +30,8 @@ namespace DynamicBox.UI.ViewControllers
 
 		void OnEnable ()
 		{
-			languagePanelOpener.text = languageButtonsTextList[PlayerPrefs.GetInt ("DialectIndex")];
+			// languagePanelOpener.text = languageButtonsTextList[PlayerPrefs.GetInt ("DialectIndex")];
+			languagePanelOpener.sprite = languageButtonsSpriteList[PlayerPrefs.GetInt ("DialectIndex")];
 
 			if (IsMuted ())
 			{
@@ -55,20 +60,23 @@ namespace DynamicBox.UI.ViewControllers
 		{
 			isLanguageButtonsShowing = false;
 
-			languagePanelOpener.text = languageButtonsTextList[index];
+			// languagePanelOpener.text = languageButtonsTextList[index];
+			languagePanelOpener.sprite = languageButtonsSpriteList[index];
 
 			ShowLanguageButtons (false);
 
 			Debug.Log ("Selected dialect index = " + index);
 			PlayerPrefs.SetInt ("DialectIndex", index);
-			
+
 			EventManager.Instance.Raise (new DialectSelectedEvent (index));
 		}
 
 		public void PlayUsingCurrentDialect ()
 		{
-			UIView.HideView ("Menu","Dialects");
-			UIView.ShowView ("Menu","Letters");
+			UIView.HideView ("Menu", "Dialects");
+			UIView.ShowView ("Menu", "Letters");
+			
+			EventManager.Instance.Raise (new LettersPageEnabledEvent ());
 		}
 
 		private void ShowLanguageButtons (bool value)

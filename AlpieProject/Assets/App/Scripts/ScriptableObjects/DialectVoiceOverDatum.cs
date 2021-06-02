@@ -2,7 +2,7 @@
 
 namespace DynamicBox.ScriptableObjects
 {
-	[CreateAssetMenu (menuName = "DynamicBox/IAP/Dialect Voice Over", order = 1301)]
+	[CreateAssetMenu (menuName = "DynamicBox/Sound/Dialect Voice Over", order = 1301)]
 	public class DialectVoiceOverDatum : ScriptableObject
 	{
 		[Header ("Parameters")]

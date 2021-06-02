@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using DynamicBox.EventManagement;
+using DynamicBox.EventManagement.GameEvents.VoiceOver;
 
 ///Developed by Indie Studio
 ///https://www.assetstore.unity3d.com/en/#!/publisher/9268
@@ -495,6 +497,8 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	private void RadialFill ()
 	{
+		EventManager.Instance.Raise (new NewLetterSelectedEvent (false));
+		
 		clickPostion = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
 		direction = clickPostion - path.transform.position;
@@ -561,6 +565,8 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	private void LinearFill ()
 	{
+		EventManager.Instance.Raise (new NewLetterSelectedEvent (false));
+		
 		clickPostion = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
 		Vector3 rotation = path.transform.eulerAngles;
@@ -609,6 +615,8 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	private void PointFill ()
 	{
+		EventManager.Instance.Raise (new NewLetterSelectedEvent (false));
+		
 		pathFillImage.fillAmount = 1;
 		CheckPathComplete ();
 	}

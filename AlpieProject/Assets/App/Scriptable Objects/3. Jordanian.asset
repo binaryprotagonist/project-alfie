@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e8a9b3573b4c7892d0fe19c0756c4a, type: 3}
+  m_Name: 3. Jordanian
+  m_EditorClassIdentifier: 
+  _voiceOvers:
+  - {fileID: 8300000, guid: 32d44f52cb181404ebc6027c8bea41a8, type: 3}
+  - {fileID: 8300000, guid: b8418824952b2f146bb67596128b183a, type: 3}
+  - {fileID: 8300000, guid: 3270e1138f586c241b676f9f0fd8df46, type: 3}
+  - {fileID: 8300000, guid: 5a813cb11f0d78145ad238c3f5f1d803, type: 3}
+  - {fileID: 8300000, guid: 538ae088a1fecb04287d5a75aae98a14, type: 3}
+  - {fileID: 8300000, guid: 198f3d2fdca30df4ea11c80f4b6fbdc0, type: 3}
+  - {fileID: 8300000, guid: 198f3d2fdca30df4ea11c80f4b6fbdc0, type: 3}
+  - {fileID: 8300000, guid: 10d7a24736a75cd42869574756276724, type: 3}

@@ -6,6 +6,7 @@ using Doozy.Engine.UI;
 using DynamicBox.Controllers;
 using DynamicBox.EventManagement;
 using DynamicBox.EventManagement.GameEvents;
+using DynamicBox.EventManagement.GameEvents.VoiceOver;
 using DynamicBox.Helpers;
 using TMPro;
 using UnityEngine;
@@ -225,6 +226,8 @@ namespace DynamicBox.UI.ViewControllers
 			}
 
 			audioSource.PlayOneShot (currentSounds[currentLetterIndex]);
+			
+			EventManager.Instance.Raise (new NewLetterSelectedEvent (true));
 
 			// Check if selected current letter is finished or not
 			bool isCompleted = saveController.CheckIfLetterFinished (currentLetterIndex);

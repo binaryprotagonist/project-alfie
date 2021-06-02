@@ -29,16 +29,14 @@ namespace DynamicBox.Controllers
 
 		private void CheckSaveDataFile ()
 		{
-			saveData = saveManager.LoadFromFile ("SaveData", new SaveData ());
-			
-			if (saveManager.FileExists ("SaveData") && false) // temporary, to reset data every time
+			if (saveManager.FileExists ("SaveData"))
 			{
-				// do nothing
+				saveData = saveManager.LoadFromFile ("SaveData", new SaveData ());
 			}
 			else
 			{
-				saveData.letterData.Clear ();
-				
+				saveData = saveManager.LoadFromFile ("SaveData", new SaveData ());
+
 				for (int i = 0; i < letterCount; i++)
 				{
 					LetterData letterData = new LetterData (i, false);

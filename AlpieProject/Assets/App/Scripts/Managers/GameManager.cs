@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using DynamicBox.Controllers;
+using DynamicBox.EventManagement;
+using DynamicBox.EventManagement.GameEvents.VoiceOver;
 using DynamicBox.UI.ViewControllers;
 using EnglishTracingBook;
 using UnityEngine;
@@ -531,6 +533,8 @@ namespace DynamicBox.Managers
 		private void OnShapeComplete ()
 		{
 			lettersViewController.SetLetterFinished (letterIndex);
+			
+			EventManager.Instance.Raise (new LetterFinishedEvent ());
 
 			Debug.Log ("Shape completed");
 
