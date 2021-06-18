@@ -185,6 +185,7 @@ namespace DynamicBox.UI.ViewControllers
 
 		public void ConfirmAge ()
 		{
+			PlayerPrefs.SetString ("AgeConfirmed", "yes");
 			agePanel.SetActive (false);
 			iapPanel.SetActive (true);
 		}
@@ -197,7 +198,11 @@ namespace DynamicBox.UI.ViewControllers
 				if (!isUnlocked)
 				{
 					Debug.Log ("All letters are not unlocked");
-					agePanel.SetActive (true);
+
+					if (!PlayerPrefs.GetString("AgeConfirmed").Equals ("yes"))
+					{
+						agePanel.SetActive (true);
+					}
 					
 					// return;
 				}
