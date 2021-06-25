@@ -13,6 +13,7 @@ namespace DynamicBox.Helpers
 		async void Start ()
 		{
 			await Task.Delay (waitTime * 1000);
+			Destroy(gameObject);
 		}
 
 		#endregion

@@ -8401,7 +8401,7 @@ MonoBehaviour:
   previousButton: {fileID: 153413428}
   nextButton: {fileID: 1754317928}
   hapticFeedback: {fileID: 1662128349}
-  confettiParticlePrefab: {fileID: 6136373855487075956, guid: bfd69d20568bdae46b07895a34599188, type: 3}
+  confettiParticlePrefab: {fileID: 6136373855487075956, guid: d5487dc79b950c44985a631e8327e9cc, type: 3}
   letters:
   - {fileID: 21300000, guid: c95cbc87c53c76c49ae4609cd92b4d96, type: 3}
   - {fileID: 21300000, guid: ab841e901c555ff429fc43602e53be75, type: 3}
@@ -8552,7 +8552,7 @@ MonoBehaviour:
   videoPlayer: {fileID: 73259439}
   backgroundVideos:
   - {fileID: 32900000, guid: 17744f0ea9e8a2541a9876867ab10f55, type: 3}
-  - {fileID: 32900000, guid: 8d86f2acbc502974e94d66c2a8fcdcde, type: 3}
+  - {fileID: 32900000, guid: 11cbaa8fddbed5040954c06ad9f9d853, type: 3}
   - {fileID: 32900000, guid: c4c5902e424700648bc0010608298b39, type: 3}
   - {fileID: 32900000, guid: 08e93898e435d6c47892dcd3f2128e15, type: 3}
   - {fileID: 32900000, guid: 340c106797a377e4eba9e03f3b54f95e, type: 3}
