@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Path
+  - Collider
+  - Number
+  - Start
+  - Fill
+  - LetterCollider
   layers:
   - Default
   - TransparentFX

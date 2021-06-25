@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DynamicBox.Controllers;
 using DynamicBox.EventManagement;
+using DynamicBox.EventManagement.GameEvents;
 using DynamicBox.EventManagement.GameEvents.VoiceOver;
 using DynamicBox.UI.ViewControllers;
 using EnglishTracingBook;
@@ -24,9 +25,11 @@ namespace DynamicBox.Managers
 		[SerializeField] private GameObject testShapePrefab;
 		[SerializeField] private Color paintColor;
 		[SerializeField] private GameObject[] letterPrefabs;
-
+		
 		// Whether the script is running or not.
 		public bool isRunning = true;
+
+		public bool isClickOnLetter;
 
 		// The path.
 		private Path path;
@@ -101,6 +104,16 @@ namespace DynamicBox.Managers
 			}
 		}
 
+		void OnEnable ()
+		{
+			EventManager.Instance.AddListener<ClickOnLetterEvent> (ClickOnLetterEventHandler);
+		}
+
+		void OnDisable ()
+		{
+			EventManager.Instance.RemoveListener<ClickOnLetterEvent> (ClickOnLetterEventHandler);
+		}
+
 		void Start ()
 		{
 			//Initiate values and setup the references
@@ -153,6 +166,72 @@ namespace DynamicBox.Managers
 				rocket.SetActive (false);
 			}
 
+
+			if (isTestMode)
+			{
+				if (Input.GetMouseButton (0))
+				{
+					Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+					// RaycastHit2D hit = Physics2D.GetRayIntersection (ray, Mathf.Infinity);
+					RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll (ray, Mathf.Infinity);
+
+					// if (hit.collider != null)
+					// {
+					// 	Debug.Log (hit.collider.name);
+					// 	
+					// 	if (hit.collider.CompareTag ("LetterCollider"))
+					// 	{
+					// 		// Debug.Log ("Click on LetterCollider");
+					// 		Debug.Log ("1");
+					//
+					// 		EventManager.Instance.Raise (new ClickOnLetterEvent (true));
+					// 	}
+					// 	else
+					// 	{
+					// 		// Debug.Log ("Click not on LetterCollider");
+					// 		Debug.Log ("2");
+					//
+					// 		EventManager.Instance.Raise (new ClickOnLetterEvent (false));
+					// 	}
+					// }
+					// else
+					// {
+					// 	Debug.Log ("3");
+					// 	EventManager.Instance.Raise (new ClickOnLetterEvent (false));
+					// }
+
+					if (hits.Length > 0)
+					{
+						// Debug.Log (hits.Length);
+
+						foreach (RaycastHit2D hit in hits)
+						{
+							if (hit.collider.CompareTag ("LetterCollider"))
+							{
+								// Debug.Log ("Click on LetterCollider");
+								Debug.Log ("1");
+
+								EventManager.Instance.Raise (new ClickOnLetterEvent (true));
+							}
+							else
+							{
+								// Debug.Log ("Click not on LetterCollider");
+								Debug.Log ("2");
+
+								EventManager.Instance.Raise (new ClickOnLetterEvent (false));
+							}
+						}
+					}
+					else
+					{
+						Debug.Log ("3");
+						EventManager.Instance.Raise (new ClickOnLetterEvent (false));
+					}
+				}
+			}
+
+
+
 			if (!isRunning || path == null || pathFillImage == null)
 			{
 				return;
@@ -173,17 +252,44 @@ namespace DynamicBox.Managers
 				return;
 			}*/
 
-			switch (path.fillMethod)
+			if (isTestMode)
 			{
-				case Path.FillMethod.Radial:
-					RadialFill ();
-					break;
-				case Path.FillMethod.Linear:
-					LinearFill ();
-					break;
-				case Path.FillMethod.Point:
-					PointFill ();
-					break;
+				if (isClickOnLetter)
+				{
+					Debug.Log ("Filling");
+
+					switch (path.fillMethod)
+					{
+						case Path.FillMethod.Radial:
+							RadialFill ();
+							break;
+						case Path.FillMethod.Linear:
+							LinearFill ();
+							break;
+						case Path.FillMethod.Point:
+							PointFill ();
+							break;
+					}
+				}
+				else
+				{
+					Debug.Log ("Filling disabled");
+				}
+			}
+			else
+			{
+				switch (path.fillMethod)
+				{
+					case Path.FillMethod.Radial:
+						RadialFill ();
+						break;
+					case Path.FillMethod.Linear:
+						LinearFill ();
+						break;
+					case Path.FillMethod.Point:
+						PointFill ();
+						break;
+				}
 			}
 		}
 
@@ -738,6 +844,11 @@ namespace DynamicBox.Managers
 		private void EnableGameManager ()
 		{
 			isRunning = true;
+		}
+
+		private void ClickOnLetterEventHandler (ClickOnLetterEvent eventDetails)
+		{
+			isClickOnLetter = eventDetails.Value;
 		}
 	}
 }
