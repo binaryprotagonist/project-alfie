@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using DynamicBox.Controllers;
 using DynamicBox.EventManagement;
 using DynamicBox.EventManagement.GameEvents;
 using DynamicBox.EventManagement.GameEvents.VoiceOver;
@@ -32,16 +31,16 @@ namespace DynamicBox.Managers
 		public bool isClickOnLetter;
 
 		// The path.
-		private Path path;
+		public Path path;
 
 		// The shape parent.
 		public Transform shapeParent;
 
 		// The shape reference.
-		[HideInInspector] public Shape shape;
+		/*[HideInInspector]*/ public Shape shape;
 
 		// The path fill image.
-		private Image pathFillImage;
+		public Image pathFillImage;
 
 		///The click position.
 		private Vector3 clickPostion;
@@ -166,77 +165,46 @@ namespace DynamicBox.Managers
 				rocket.SetActive (false);
 			}
 
-
-			if (isTestMode)
+			if (Input.GetMouseButton (0))
 			{
-				if (Input.GetMouseButton (0))
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				// RaycastHit2D hit = Physics2D.GetRayIntersection (ray, Mathf.Infinity);
+				RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll (ray, Mathf.Infinity);
+
+				if (hits.Length > 0)
 				{
-					Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-					// RaycastHit2D hit = Physics2D.GetRayIntersection (ray, Mathf.Infinity);
-					RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll (ray, Mathf.Infinity);
-
-					// if (hit.collider != null)
-					// {
-					// 	Debug.Log (hit.collider.name);
-					// 	
-					// 	if (hit.collider.CompareTag ("LetterCollider"))
-					// 	{
-					// 		// Debug.Log ("Click on LetterCollider");
-					// 		Debug.Log ("1");
-					//
-					// 		EventManager.Instance.Raise (new ClickOnLetterEvent (true));
-					// 	}
-					// 	else
-					// 	{
-					// 		// Debug.Log ("Click not on LetterCollider");
-					// 		Debug.Log ("2");
-					//
-					// 		EventManager.Instance.Raise (new ClickOnLetterEvent (false));
-					// 	}
-					// }
-					// else
-					// {
-					// 	Debug.Log ("3");
-					// 	EventManager.Instance.Raise (new ClickOnLetterEvent (false));
-					// }
-
-					if (hits.Length > 0)
+					foreach (RaycastHit2D hit in hits)
 					{
-						// Debug.Log (hits.Length);
+						// Debug.Log ("Hit: " + hit.collider.name);
 
-						foreach (RaycastHit2D hit in hits)
+						if (hit.collider.CompareTag ("LetterCollider"))
 						{
-							if (hit.collider.CompareTag ("LetterCollider"))
-							{
-								// Debug.Log ("Click on LetterCollider");
-								Debug.Log ("1");
+							// Debug.Log ("Click on LetterCollider");
+							// Debug.Log ("1");
 
-								EventManager.Instance.Raise (new ClickOnLetterEvent (true));
-							}
-							else
-							{
-								// Debug.Log ("Click not on LetterCollider");
-								Debug.Log ("2");
+							isClickOnLetter = true;
 
-								EventManager.Instance.Raise (new ClickOnLetterEvent (false));
-							}
+							break;
 						}
-					}
-					else
-					{
-						Debug.Log ("3");
-						EventManager.Instance.Raise (new ClickOnLetterEvent (false));
+
+						// Debug.Log ("Click not on LetterCollider");
+						// Debug.Log ("2");
+
+						isClickOnLetter = false;
 					}
 				}
+				else
+				{
+					// Debug.Log ("3");
+					EventManager.Instance.Raise (new ClickOnLetterEvent (false));
+				}
 			}
-
-
 
 			if (!isRunning || path == null || pathFillImage == null)
 			{
 				return;
 			}
-
+			
 			if (path.completed)
 			{
 				return;
@@ -252,32 +220,10 @@ namespace DynamicBox.Managers
 				return;
 			}*/
 
-			if (isTestMode)
+			if (isClickOnLetter)
 			{
-				if (isClickOnLetter)
-				{
-					Debug.Log ("Filling");
+				// Debug.Log ("Filling");
 
-					switch (path.fillMethod)
-					{
-						case Path.FillMethod.Radial:
-							RadialFill ();
-							break;
-						case Path.FillMethod.Linear:
-							LinearFill ();
-							break;
-						case Path.FillMethod.Point:
-							PointFill ();
-							break;
-					}
-				}
-				else
-				{
-					Debug.Log ("Filling disabled");
-				}
-			}
-			else
-			{
 				switch (path.fillMethod)
 				{
 					case Path.FillMethod.Radial:
@@ -291,11 +237,17 @@ namespace DynamicBox.Managers
 						break;
 				}
 			}
+			else
+			{
+				// Debug.Log ("Not filling");
+			}
 		}
 
 		// On the start hit collider event.
 		private void OnStartHitCollider (RaycastHit2D hit2d)
 		{
+			// Debug.Log ("OnStartHitCollider");
+			
 			path = hit2d.transform.GetComponentInParent<Path> ();
 
 			pathFillImage = CommonUtil.FindChildByTag (path.transform, "Fill").GetComponent<Image> ();
@@ -344,6 +296,7 @@ namespace DynamicBox.Managers
 			try
 			{
 				GameObject shapeGameObject;
+				
 				if (isTestMode)
 				{
 					shapeGameObject = Instantiate (testShapePrefab, Vector3.zero, Quaternion.identity);
@@ -578,7 +531,7 @@ namespace DynamicBox.Managers
 			CheckPathComplete ();
 		}
 
-		// Checks wehther path completed or not.
+		// Checks whether path completed or not.
 		private void CheckPathComplete ()
 		{
 			// Debug.Log ("fillAmount = " + fillAmount);
@@ -602,6 +555,19 @@ namespace DynamicBox.Managers
 				if (shape != null)
 				{
 					shape.ShowPathNumbers (shape.GetCurrentPathIndex ());
+				}
+
+				if (shape != null)
+				{
+					// Debug.Log ("Shape is not null");
+					Debug.Log ("Path completed");
+
+					isClickOnLetter = false;
+					shape.SetActiveLetterCollider ();
+				}
+				else
+				{
+					Debug.Log ("Shape is null");
 				}
 
 				hit2d = Physics2D.Raycast (GetCurrentPlatformClickPosition (Camera.main), Vector2.zero);

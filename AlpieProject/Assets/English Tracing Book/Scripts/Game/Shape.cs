@@ -30,6 +30,10 @@ public class Shape : MonoBehaviour
 	/// </summary>
 	[HideInInspector] public bool enablePriorityOrder = true;
 
+	[Header("Custom")]
+	[SerializeField] private List<Collider2D> letterColliders; 
+	[SerializeField] private int letterColliderIndex; 
+
 	void Start ()
 	{
 		if (GameManager.compoundShape == null)
@@ -38,6 +42,20 @@ public class Shape : MonoBehaviour
 			{
 				Invoke ("EnableTracingHand", 0.2f);
 				ShowPathNumbers (0);
+			}
+		}
+	}
+
+	public void SetActiveLetterCollider ()
+	{
+		if (letterColliderIndex < letterColliders.Count)
+		{
+			letterColliders[letterColliderIndex].enabled = false;
+			letterColliderIndex++;
+
+			if (letterColliderIndex < letterColliders.Count)
+			{
+				letterColliders[letterColliderIndex].enabled = true;
 			}
 		}
 	}

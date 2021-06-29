@@ -1436,7 +1436,7 @@ MonoBehaviour:
   lettersViewController: {fileID: 1662128348}
   myCanvas: {fileID: 1042077062}
   rocket: {fileID: 778485530}
-  testShapePrefab: {fileID: 8016721915085011147, guid: 7838b2259e9c98a4789cade446d83058, type: 3}
+  testShapePrefab: {fileID: 3688337379817567593, guid: 4e2ee45f463aa4e4d93450249777e3d9, type: 3}
   paintColor: {r: 1, g: 1, b: 1, a: 1}
   letterPrefabs:
   - {fileID: 4175875526775321138, guid: 693e3589edb0de44a881042df2720b4b, type: 3}
@@ -1469,8 +1469,10 @@ MonoBehaviour:
   - {fileID: 1860067741944524881, guid: f29b7b07dc323b7429f7c59e28a609df, type: 3}
   isRunning: 1
   isClickOnLetter: 0
+  path: {fileID: 0}
   shapeParent: {fileID: 9096744189727588459}
   shape: {fileID: 0}
+  pathFillImage: {fileID: 0}
   hand: {fileID: 9096744188751117434}
 --- !u!1 &289225356
 GameObject:
@@ -2611,7 +2613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &502524115
 RectTransform:
   m_ObjectHideFlags: 0

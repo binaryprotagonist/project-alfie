@@ -75,6 +75,68 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &248440182139542749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9188797246868358163}
+  - component: {fileID: 8273667880857237801}
+  m_Layer: 5
+  m_Name: LetterCollider2
+  m_TagString: LetterCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9188797246868358163
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248440182139542749}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -49.999977}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8839702457153429258}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -64.000015, y: 258.00003}
+  m_SizeDelta: {x: 150, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!61 &8273667880857237801
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248440182139542749}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 150, y: 150}
+  m_EdgeRadius: 0
 --- !u!1 &1200079685887866408
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +395,114 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2916184055479438520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7992314208438479251}
+  - component: {fileID: 4422473400438338425}
+  m_Layer: 5
+  m_Name: LetterCollider1
+  m_TagString: LetterCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7992314208438479251
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2916184055479438520}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8839702457153429258}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!60 &4422473400438338425
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2916184055479438520}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 162.13342, y: 197.23022}
+      - {x: 125.60925, y: 198.72272}
+      - {x: 93.06885, y: 183.7547}
+      - {x: 72.201904, y: 149.8692}
+      - {x: 69.11682, y: 128.50122}
+      - {x: 70.46118, y: 104.349304}
+      - {x: 84.81018, y: 41.80804}
+      - {x: 90.537964, y: -17.63971}
+      - {x: 91.073, y: -77.55243}
+      - {x: 79.218994, y: -122.91565}
+      - {x: 57.160522, y: -148.4002}
+      - {x: 11.618164, y: -164.02417}
+      - {x: -36.696594, y: -169.5022}
+      - {x: -105.86304, y: -167.216}
+      - {x: -149.27942, y: -159.20483}
+      - {x: -183.69244, y: -139.16656}
+      - {x: -201.31525, y: -101.80231}
+      - {x: -210.10327, y: -44.55896}
+      - {x: -201.65045, y: 15.432556}
+      - {x: -188.7442, y: 66.47125}
+      - {x: -189.91559, y: 103.747375}
+      - {x: -211.59186, y: 136.98138}
+      - {x: -252.61243, y: 150.16486}
+      - {x: -285.7287, y: 143.47687}
+      - {x: -311.24066, y: 124.1488}
+      - {x: -332.15887, y: 78.9776}
+      - {x: -345.54004, y: 23.245361}
+      - {x: -352.14172, y: -44.17169}
+      - {x: -351.0619, y: -111.05713}
+      - {x: -336.51587, y: -178.34454}
+      - {x: -300.36493, y: -250.76617}
+      - {x: -235.1665, y: -304.86313}
+      - {x: -180.95856, y: -324.27194}
+      - {x: -126.34442, y: -335.07095}
+      - {x: -72.65796, y: -339.654}
+      - {x: -13.556519, y: -336.61658}
+      - {x: 31.629395, y: -329.7235}
+      - {x: 80.49097, y: -317.27145}
+      - {x: 122.59717, y: -297.347}
+      - {x: 165.72815, y: -262.50995}
+      - {x: 195.03784, y: -224.94824}
+      - {x: 215.9436, y: -179.56317}
+      - {x: 231.49731, y: -120.3407}
+      - {x: 235.94469, y: -3.2084923}
+      - {x: 225.65968, y: 80.69465}
+      - {x: 214.03076, y: 138.9671}
+      - {x: 194.00366, y: 177.27393}
 --- !u!1 &3417343409017484325
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +662,7 @@ GameObject:
   - component: {fileID: 6985910866118435276}
   - component: {fileID: 7653467921019604482}
   m_Layer: 5
-  m_Name: 25
+  m_Name: 25. nun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -512,6 +682,8 @@ RectTransform:
   - {fileID: 4042210704634654363}
   - {fileID: 4093223823817677373}
   - {fileID: 4893158002081863710}
+  - {fileID: 7992314208438479251}
+  - {fileID: 9188797246868358163}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -578,6 +750,10 @@ MonoBehaviour:
   twoStarsTimePeriod: 20
   completed: 0
   enablePriorityOrder: 1
+  letterColliders:
+  - {fileID: 4422473400438338425}
+  - {fileID: 8273667880857237801}
+  letterColliderIndex: 0
 --- !u!114 &6985910866118435276
 MonoBehaviour:
   m_ObjectHideFlags: 0

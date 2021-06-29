@@ -315,7 +315,6 @@ RectTransform:
   - {fileID: 807068983599743188}
   - {fileID: 642786811226145547}
   - {fileID: 6383275490291374885}
-  - {fileID: 76499942761351357}
   m_Father: {fileID: 4680316640614352658}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -358,7 +357,7 @@ GameObject:
   - component: {fileID: 76499942761351357}
   - component: {fileID: 4164907273770523023}
   m_Layer: 5
-  m_Name: StartLetterCollider
+  m_Name: DotCollider
   m_TagString: LetterCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,15 +371,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2755868998483117434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -49.999977}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1480327418628918393}
-  m_RootOrder: 3
+  m_Father: {fileID: 8770972360344797190}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.0964603, y: -0.023498535}
+  m_AnchoredPosition: {x: -17.6, y: -249.5}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &4164907273770523023
@@ -390,7 +389,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2755868998483117434}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -568,7 +567,7 @@ GameObject:
   - component: {fileID: 7198685711176826560}
   - component: {fileID: 7575823058110288142}
   m_Layer: 5
-  m_Name: 2. ba
+  m_Name: 2. ba 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -589,6 +588,7 @@ RectTransform:
   - {fileID: 4312798116518135089}
   - {fileID: 4680316640614352658}
   - {fileID: 8975013953433275333}
+  - {fileID: 76499942761351357}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -655,6 +655,10 @@ MonoBehaviour:
   twoStarsTimePeriod: 20
   completed: 0
   enablePriorityOrder: 1
+  letterColliders:
+  - {fileID: 8763906232197520012}
+  - {fileID: 4164907273770523023}
+  letterColliderIndex: 0
 --- !u!114 &7198685711176826560
 MonoBehaviour:
   m_ObjectHideFlags: 0

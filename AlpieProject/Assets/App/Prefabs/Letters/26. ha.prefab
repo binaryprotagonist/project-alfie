@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5267254485524806648}
   - component: {fileID: 4890179538043442230}
   m_Layer: 5
-  m_Name: 26
+  m_Name: 26. ha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,6 +117,7 @@ RectTransform:
   - {fileID: 1293427955762574511}
   - {fileID: 1235659234169815049}
   - {fileID: 7641484455776682538}
+  - {fileID: 6553085558992492940}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,6 +183,9 @@ MonoBehaviour:
   twoStarsTimePeriod: 20
   completed: 0
   enablePriorityOrder: 1
+  letterColliders:
+  - {fileID: 5151194981606816637}
+  letterColliderIndex: 0
 --- !u!114 &5267254485524806648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +344,115 @@ MonoBehaviour:
   quarterRestriction: 1
   radialAngleOffset: 0
   shape: {fileID: 0}
+--- !u!1 &2954036023965158899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6553085558992492940}
+  - component: {fileID: 5151194981606816637}
+  m_Layer: 5
+  m_Name: LetterCollider1
+  m_TagString: LetterCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6553085558992492940
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2954036023965158899}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6000785281916667198}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!60 &5151194981606816637
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2954036023965158899}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 55.94214, y: 312.71155}
+      - {x: -26.870789, y: 330.3119}
+      - {x: -89.01398, y: 331.42737}
+      - {x: -148.18079, y: 320.0055}
+      - {x: -202.67377, y: 296.91626}
+      - {x: -260.8849, y: 252.52509}
+      - {x: -291.36285, y: 214.06}
+      - {x: -106.08026, y: 77.762146}
+      - {x: -89.0517, y: 83.57898}
+      - {x: -61.387527, y: 87.85144}
+      - {x: -33.07953, y: 85.029175}
+      - {x: 0.91955566, y: 72.10004}
+      - {x: 33.570312, y: 36.465576}
+      - {x: 40.443604, y: -6.0942993}
+      - {x: 42.05603, y: -52.67041}
+      - {x: 28.75122, y: -70.295044}
+      - {x: -15.993469, y: -79.39026}
+      - {x: -121.88617, y: -77.24872}
+      - {x: -153.56818, y: -66.161194}
+      - {x: -158.031, y: -40.48059}
+      - {x: -151.74255, y: 30.386658}
+      - {x: -124.68933, y: 66.38501}
+      - {x: -106.03601, y: 77.706726}
+      - {x: -291.8863, y: 214.07117}
+      - {x: -305.36328, y: 190.02539}
+      - {x: -333.38403, y: 124.20886}
+      - {x: -353.24353, y: 35.297424}
+      - {x: -358.39563, y: -52.645447}
+      - {x: -348.5318, y: -130.5398}
+      - {x: -319.372, y: -210.16821}
+      - {x: -278.10284, y: -263.04303}
+      - {x: -226.08923, y: -298.2897}
+      - {x: -188.04584, y: -313.1491}
+      - {x: -108.08435, y: -329.39258}
+      - {x: -33.35846, y: -331.43533}
+      - {x: 33.637695, y: -323.2135}
+      - {x: 95.36755, y: -303.305}
+      - {x: 134.3357, y: -282.28467}
+      - {x: 169.1897, y: -254.17505}
+      - {x: 205.92896, y: -204.56073}
+      - {x: 228.18335, y: -142.9837}
+      - {x: 238.60425, y: -77.09137}
+      - {x: 240.39478, y: 8.4539795}
+      - {x: 231.33813, y: 74.088684}
+      - {x: 214.44397, y: 137.13684}
+      - {x: 178.58447, y: 209.45288}
+      - {x: 137.26448, y: 260.55566}
+      - {x: 101.75843, y: 285.56055}
 --- !u!1 &4393657527333505499
 GameObject:
   m_ObjectHideFlags: 0

@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
 				hit2d = Physics2D.Raycast (GetCurrentPlatformClickPosition (Camera.main), Vector2.zero);
 			if (hit2d.collider != null)
 			{
-				if (hit2d.transform.tag == "Start")
+				if (hit2d.transform.CompareTag ("Start"))
 				{
 					OnStartHitCollider (hit2d);
 					shape.CancelInvoke ();
@@ -647,7 +647,7 @@ public class GameManager : MonoBehaviour
 			hit2d = Physics2D.Raycast (GetCurrentPlatformClickPosition (Camera.main), Vector2.zero);
 			if (hit2d.collider != null)
 			{
-				if (hit2d.transform.tag == "Start")
+				if (hit2d.transform.CompareTag ("Start"))
 				{
 					if (shape.IsCurrentPath (hit2d.transform.GetComponentInParent<EnglishTracingBook.Path> ()))
 					{
