@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 4175875526765821682}
   - component: {fileID: 4175875526765864056}
   m_Layer: 5
-  m_Name: 1. alif
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
