@@ -1436,7 +1436,7 @@ MonoBehaviour:
   lettersViewController: {fileID: 1662128348}
   myCanvas: {fileID: 1042077062}
   rocket: {fileID: 778485530}
-  testShapePrefab: {fileID: 8016721915085011147, guid: 7838b2259e9c98a4789cade446d83058, type: 3}
+  testShapePrefab: {fileID: 7513632636356878093, guid: e0ede09d9e10a374a8724383c0da1361, type: 3}
   paintColor: {r: 1, g: 1, b: 1, a: 1}
   letterPrefabs:
   - {fileID: 4175875526775321138, guid: 693e3589edb0de44a881042df2720b4b, type: 3}
