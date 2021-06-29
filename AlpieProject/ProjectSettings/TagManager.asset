@@ -10,7 +10,6 @@ TagManager:
   - Start
   - Fill
   - LetterCollider
-  - DotCollider
   layers:
   - Default
   - TransparentFX

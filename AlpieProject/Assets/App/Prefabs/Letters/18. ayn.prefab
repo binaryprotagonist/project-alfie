@@ -581,6 +581,10 @@ MonoBehaviour:
   twoStarsTimePeriod: 20
   completed: 0
   enablePriorityOrder: 1
+  letterColliders:
+  - {fileID: 3381823918085278190}
+  - {fileID: 8086966956297679944}
+  letterColliderIndex: 0
 --- !u!114 &7111231026152799835
 MonoBehaviour:
   m_ObjectHideFlags: 0

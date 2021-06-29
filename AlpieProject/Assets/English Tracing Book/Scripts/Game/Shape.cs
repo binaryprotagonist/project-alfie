@@ -46,6 +46,16 @@ public class Shape : MonoBehaviour
 		}
 	}
 
+	public void SetFirstLetterColliderEnabled ()
+	{
+		foreach (Collider2D collider2D in letterColliders)
+		{
+			collider2D.enabled = false;
+		}
+
+		letterColliders[0].enabled = true;
+	}
+
 	public void SetActiveLetterCollider ()
 	{
 		if (letterColliderIndex < letterColliders.Count)

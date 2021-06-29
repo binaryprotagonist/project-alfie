@@ -572,7 +572,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2256699853830585392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -49.999977}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8713960153307807901}
@@ -956,6 +956,11 @@ MonoBehaviour:
   twoStarsTimePeriod: 20
   completed: 0
   enablePriorityOrder: 1
+  letterColliders:
+  - {fileID: 7637061479211259394}
+  - {fileID: 5882902828977569458}
+  - {fileID: 8357054196119176240}
+  letterColliderIndex: 0
 --- !u!114 &7111231026152799835
 MonoBehaviour:
   m_ObjectHideFlags: 0

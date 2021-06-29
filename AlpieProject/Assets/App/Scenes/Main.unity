@@ -1432,41 +1432,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3be33da441182428ae6e50d07df4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTestMode: 1
+  isTestMode: 0
   lettersViewController: {fileID: 1662128348}
   myCanvas: {fileID: 1042077062}
   rocket: {fileID: 778485530}
   testShapePrefab: {fileID: 3688337379817567593, guid: 4e2ee45f463aa4e4d93450249777e3d9, type: 3}
   paintColor: {r: 1, g: 1, b: 1, a: 1}
   letterPrefabs:
-  - {fileID: 4175875526775321138, guid: 693e3589edb0de44a881042df2720b4b, type: 3}
-  - {fileID: 3688337379817567593, guid: cb07d02031041fb49a2edc6037c69eb6, type: 3}
-  - {fileID: 6408181187300186940, guid: 35bc6c6670b61934682f32f416450e00, type: 3}
-  - {fileID: 8016721915085011147, guid: 4329d5b30e1a64643b7b8449205c1b77, type: 3}
-  - {fileID: 3037592336208797309, guid: c3221d63dc3d04849b96676cc9c4f0be, type: 3}
-  - {fileID: 3037592336208797309, guid: 9e065ecd8f68e754f8fcb40dda9315db, type: 3}
-  - {fileID: 7513632636356878093, guid: 14ec68f0618590144a21e13e39aa8883, type: 3}
-  - {fileID: 1949708936492119212, guid: 090f9aeb814d9d44690646cb9831d383, type: 3}
-  - {fileID: 1949708936492119212, guid: 81ec49a493058fd4281d841aa3f163cb, type: 3}
-  - {fileID: 7818651851705010803, guid: 4f4736ddbfa55ca4c8d82ca237482c54, type: 3}
-  - {fileID: 783036631149565552, guid: 7323958115f7cf747807eec94151b90b, type: 3}
-  - {fileID: 3037592336208797309, guid: ede86cff720b1464197ca52deb7feb2f, type: 3}
-  - {fileID: 4270159700122424531, guid: cf0c02ba64a93354e9d7ac3cb93a2115, type: 3}
-  - {fileID: 8482265079487093127, guid: 78625368d81a8124982877182d1b8ffc, type: 3}
-  - {fileID: 8482265079487093127, guid: 2f7907e47527ce54d9a79361c460cc53, type: 3}
-  - {fileID: 8482265079487093127, guid: fbff748ded036544c95d2a8f387c5076, type: 3}
-  - {fileID: 8482265079487093127, guid: 773096670f6d9b041bbb07d717771bff, type: 3}
-  - {fileID: 3637060482971416050, guid: 91df70dde343e074c833561b83617f7b, type: 3}
-  - {fileID: 3637060482971416050, guid: a9b8ed92ddedb7c4c80bf5584e0a696b, type: 3}
-  - {fileID: 417149011380617080, guid: 00a069e01b7abca43883515f4ad11358, type: 3}
-  - {fileID: 3637060482971416050, guid: 9fe7051ca93605542bcfc4d0f5e8603a, type: 3}
-  - {fileID: 4139598870021496185, guid: f2af0507d5ce0dd499e7af4efbc2a379, type: 3}
-  - {fileID: 2758057976061323762, guid: df7afed2d4d1d814e96946d69c1112b2, type: 3}
-  - {fileID: 4598601986175871192, guid: 78d2bd4fb03fb0743b1395d1d35b816f, type: 3}
-  - {fileID: 3475570715615963749, guid: bf2495e6b1eb7ab47b2943b2da127c6d, type: 3}
-  - {fileID: 1860067741944524881, guid: bf22a9785de3e0b4587ea63cb7d77dab, type: 3}
-  - {fileID: 1860067741944524881, guid: c7c929ca05885574fb9a36e4624b8053, type: 3}
-  - {fileID: 1860067741944524881, guid: f29b7b07dc323b7429f7c59e28a609df, type: 3}
+  - {fileID: 4175875526775321138, guid: 6cdd1f36d37ea7f468ae75bbbdfdcd8a, type: 3}
+  - {fileID: 3688337379817567593, guid: 4e2ee45f463aa4e4d93450249777e3d9, type: 3}
+  - {fileID: 6408181187300186940, guid: ea3d2a55b0347f3408edab63d0dd7edc, type: 3}
+  - {fileID: 8016721915085011147, guid: 7838b2259e9c98a4789cade446d83058, type: 3}
+  - {fileID: 3037592336208797309, guid: 3a67ad0f1e4025e4c8ab7e72c5d39408, type: 3}
+  - {fileID: 3037592336208797309, guid: 25920c0e685d91a4c8982cdabfc77b61, type: 3}
+  - {fileID: 7513632636356878093, guid: e0ede09d9e10a374a8724383c0da1361, type: 3}
+  - {fileID: 1949708936492119212, guid: 360ecbb64fe783d41800a5dc256d2a7a, type: 3}
+  - {fileID: 1949708936492119212, guid: bbe479ce2fa77ba45892b6af80510f83, type: 3}
+  - {fileID: 7818651851705010803, guid: 92bc428c8c8a5f142a675ed42292da96, type: 3}
+  - {fileID: 783036631149565552, guid: 532b43ca88d12544bbf0d51657401d8e, type: 3}
+  - {fileID: 3037592336208797309, guid: 1e8cb990037aca14ebbd466e96b9aca8, type: 3}
+  - {fileID: 4270159700122424531, guid: 57df498c71f40c343bbe55bd030c19c9, type: 3}
+  - {fileID: 8482265079487093127, guid: 7073d4ff0cd106b4a9f20662e822f868, type: 3}
+  - {fileID: 8482265079487093127, guid: 957fb3d94bc319345aa43bc3981a4e74, type: 3}
+  - {fileID: 8482265079487093127, guid: ecf1b54ab0ac5a34d9385b55d9c8a7ab, type: 3}
+  - {fileID: 8482265079487093127, guid: e831945594a7a5148ade8b0ee8f9428e, type: 3}
+  - {fileID: 3637060482971416050, guid: 0def23dc2cead1f48b4d651ab35b0ae9, type: 3}
+  - {fileID: 3637060482971416050, guid: 9584e2d0ac86e5146b76de8d16b84e53, type: 3}
+  - {fileID: 417149011380617080, guid: 3d5502dee59b9774592a4d5dee2b7d65, type: 3}
+  - {fileID: 3637060482971416050, guid: d0ce85032cf69ad439af9801e64569b0, type: 3}
+  - {fileID: 4139598870021496185, guid: 40a8d89a669a71041a8e81239edc73d0, type: 3}
+  - {fileID: 2758057976061323762, guid: 07264a5bbcca7c74a879bc38771af34d, type: 3}
+  - {fileID: 4598601986175871192, guid: 5a08f04b61402c04aa5d712c9094bfc0, type: 3}
+  - {fileID: 3475570715615963749, guid: aaa9008a3fa5a39448b85c435b88cff8, type: 3}
+  - {fileID: 1860067741944524881, guid: c341b7749b60ee242a90e6e764506ce2, type: 3}
+  - {fileID: 1860067741944524881, guid: c9fc0ee8b9d48dd46a0e8504b656903c, type: 3}
+  - {fileID: 1860067741944524881, guid: 61057ec7a9d0ac44cb0cc1cc1a40a535, type: 3}
   isRunning: 1
   isClickOnLetter: 0
   path: {fileID: 0}
@@ -2613,7 +2613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &502524115
 RectTransform:
   m_ObjectHideFlags: 0

@@ -179,7 +179,6 @@ namespace DynamicBox.Managers
 
 						if (hit.collider.CompareTag ("LetterCollider"))
 						{
-							// Debug.Log ("Click on LetterCollider");
 							// Debug.Log ("1");
 
 							isClickOnLetter = true;
@@ -187,7 +186,6 @@ namespace DynamicBox.Managers
 							break;
 						}
 
-						// Debug.Log ("Click not on LetterCollider");
 						// Debug.Log ("2");
 
 						isClickOnLetter = false;
@@ -196,7 +194,7 @@ namespace DynamicBox.Managers
 				else
 				{
 					// Debug.Log ("3");
-					EventManager.Instance.Raise (new ClickOnLetterEvent (false));
+					isClickOnLetter = false;
 				}
 			}
 
@@ -323,6 +321,8 @@ namespace DynamicBox.Managers
 				{
 					shape = FindObjectOfType<Shape> ();
 				}
+
+				shape.SetFirstLetterColliderEnabled ();
 			}
 			catch (Exception ex)
 			{
