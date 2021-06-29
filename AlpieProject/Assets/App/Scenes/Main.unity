@@ -1436,7 +1436,7 @@ MonoBehaviour:
   lettersViewController: {fileID: 1662128348}
   myCanvas: {fileID: 1042077062}
   rocket: {fileID: 778485530}
-  testShapePrefab: {fileID: 4175875526775321138, guid: 6cdd1f36d37ea7f468ae75bbbdfdcd8a, type: 3}
+  testShapePrefab: {fileID: 8016721915085011147, guid: 7838b2259e9c98a4789cade446d83058, type: 3}
   paintColor: {r: 1, g: 1, b: 1, a: 1}
   letterPrefabs:
   - {fileID: 4175875526775321138, guid: 693e3589edb0de44a881042df2720b4b, type: 3}
@@ -1467,8 +1467,6 @@ MonoBehaviour:
   - {fileID: 1860067741944524881, guid: bf22a9785de3e0b4587ea63cb7d77dab, type: 3}
   - {fileID: 1860067741944524881, guid: c7c929ca05885574fb9a36e4624b8053, type: 3}
   - {fileID: 1860067741944524881, guid: f29b7b07dc323b7429f7c59e28a609df, type: 3}
-  colliderList: []
-  currentColliderIndex: 0
   isRunning: 1
   isClickOnLetter: 0
   shapeParent: {fileID: 9096744189727588459}
