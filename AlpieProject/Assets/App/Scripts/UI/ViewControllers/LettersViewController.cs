@@ -190,6 +190,13 @@ namespace DynamicBox.UI.ViewControllers
 			iapPanel.SetActive (true);
 		}
 
+		public void CloseAgePanel ()
+		{
+			agePanel.SetActive (false);
+			currentLetterIndex = 2;
+			ShowLetter ();
+		}
+
 		private void ShowLetter ()
 		{
 			bool isUnlocked = PlayerPrefs.GetInt ("UnlockPurchased") != 0;

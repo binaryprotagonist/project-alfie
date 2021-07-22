@@ -80,7 +80,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.device-simulator": {
-      "version": "2.2.4-preview",
+      "version": "3.0.1-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -194,6 +194,13 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.unity.ui.builder": {
+      "version": "1.0.0-preview.14",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
     },
     "net.dynamicbox.eventmanagement": {
       "version": "file:Event Manager",
