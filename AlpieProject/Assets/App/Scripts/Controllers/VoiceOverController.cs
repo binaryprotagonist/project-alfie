@@ -51,6 +51,14 @@ namespace DynamicBox.Controllers
 			EventManager.Instance.Raise (new LandingPageEnabledEvent ());
 		}
 
+		// void Update ()
+		// {
+		// 	if (Input.GetKey (KeyCode.A))
+		// 	{
+		// 		Debug.Log (PlayerPrefs.GetInt ("DialectIndex"));
+		// 	}
+		// }
+
 		#endregion
 
 		private async Task LandingPageEnabledAsync ()

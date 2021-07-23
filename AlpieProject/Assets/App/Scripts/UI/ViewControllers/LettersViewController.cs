@@ -51,6 +51,7 @@ namespace DynamicBox.UI.ViewControllers
 
 		[Header ("Letter images")]
 		[SerializeField] private Sprite[] letters;
+		[SerializeField] private Sprite[] whiteLetters;
 
 		[Header ("Letter sounds")]
 		[SerializeField] private AudioSource audioSource;
@@ -78,7 +79,7 @@ namespace DynamicBox.UI.ViewControllers
 			EventManager.Instance.AddListener<UnlockSuccessfulEvent> (UnlockSuccessfulEventHandler);
 		}
 
-		private void OnDisable ()
+		void OnDisable ()
 		{
 			EventManager.Instance.RemoveListener<UnlockSuccessfulEvent> (UnlockSuccessfulEventHandler);
 		}
@@ -230,7 +231,7 @@ namespace DynamicBox.UI.ViewControllers
 				iapLockedPanel.SetActive (false);
 			}
 
-			letterImage.sprite = letters[currentLetterIndex];
+			letterImage.sprite = whiteLetters[currentLetterIndex];
 
 			if (audioSource.isPlaying)
 			{
@@ -242,17 +243,19 @@ namespace DynamicBox.UI.ViewControllers
 			EventManager.Instance.Raise (new NewLetterSelectedEvent (true));
 
 			// Check if selected current letter is finished or not
-			bool isCompleted = saveController.CheckIfLetterFinished (currentLetterIndex);
+			// bool isCompleted = saveController.CheckIfLetterFinished (currentLetterIndex);
+			//
+			// if (isCompleted)
+			// {
+			// 	SetBackgroundVideo (currentLetterIndex);
+			// 	gameManager.DestroyShape ();
+			// }
+			// else
+			// {
+			// 	ShowCurrentLetter ();
+			// }
 			
-			if (isCompleted)
-			{
-				SetBackgroundVideo (currentLetterIndex);
-				gameManager.DestroyShape ();
-			}
-			else
-			{
-				ShowCurrentLetter ();
-			}
+			ShowCurrentLetter ();
 		}
 
 		private async Task HidePathsAsync ()
@@ -290,7 +293,7 @@ namespace DynamicBox.UI.ViewControllers
 
 		private void SetLetterImage (int index)
 		{
-			letterImage.sprite = letters[index];
+			letterImage.sprite = whiteLetters[index];
 		}
 
 		private void SetBackgroundVideo (int index)
