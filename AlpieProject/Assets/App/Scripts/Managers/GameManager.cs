@@ -55,7 +55,7 @@ namespace DynamicBox.Managers
 		private float clockWiseSign;
 
 		// The hand reference.
-		public Transform hand;
+		// public Transform hand;
 
 		// The default size of the cursor.
 		private Vector3 cursorDefaultSize;
@@ -83,8 +83,8 @@ namespace DynamicBox.Managers
 		void Awake ()
 		{
 			//Initiate values and setup the references
-			cursorDefaultSize = hand.transform.localScale;
-			cursorClickSize = cursorDefaultSize / 1.2f;
+			// cursorDefaultSize = hand.transform.localScale;
+			// cursorClickSize = cursorDefaultSize / 1.2f;
 
 			ShapesManager.shapesManagerReference = "SShapesManager";
 			if (!string.IsNullOrEmpty (ShapesManager.shapesManagerReference))
@@ -370,25 +370,25 @@ namespace DynamicBox.Managers
 		// Draw the hand.
 		private void DrawHand (Vector3 clickPosition)
 		{
-			if (hand == null)
-			{
-				return;
-			}
-
-			hand.transform.position = clickPosition;
+			// if (hand == null)
+			// {
+			// 	return;
+			// }
+			//
+			// hand.transform.position = clickPosition;
 		}
 
-		// Set the size of the hand to default size.
-		private void SetHandDefaultSize ()
-		{
-			hand.transform.localScale = cursorDefaultSize;
-		}
-
-		// Set the size of the hand to click size.
-		private void SetHandClickSize ()
-		{
-			hand.transform.localScale = cursorClickSize;
-		}
+		// // Set the size of the hand to default size.
+		// private void SetHandDefaultSize ()
+		// {
+		// 	hand.transform.localScale = cursorDefaultSize;
+		// }
+		//
+		// // Set the size of the hand to click size.
+		// private void SetHandClickSize ()
+		// {
+		// 	hand.transform.localScale = cursorClickSize;
+		// }
 
 		// Get the current platform click position.
 		private Vector3 GetCurrentPlatformClickPosition (Camera camera)

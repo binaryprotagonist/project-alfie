@@ -67,16 +67,20 @@ namespace DynamicBox.Controllers
 			{
 				dialectIndex = PlayerPrefs.GetInt ("DialectIndex");
 
+				// Hi
+				Debug.Log ("0");
 				AudioClip audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[0];
-				audioSource.PlayOneShot (audioClip);
-
-				await Task.Delay (3000, cancellationToken);
+				PlayAudio (audioClip);
+				
+				await Task.Delay (3500, cancellationToken);
 
 				if (cancellationToken.IsCancellationRequested)
 					return;
 
+				// Let's play together
+				Debug.Log ("1");
 				audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[1];
-				audioSource.PlayOneShot (audioClip);
+				PlayAudio (audioClip);
 			}
 			catch (Exception e)
 			{
@@ -86,22 +90,28 @@ namespace DynamicBox.Controllers
 
 		private async Task LettersPageEnabledAsync ()
 		{
+			Debug.Log ("LettersPageEnabledAsync");
+			
 			try
 			{
 				await Task.Delay (3000, cancellationToken);
 				
 				dialectIndex = PlayerPrefs.GetInt ("DialectIndex");
 
+				// Let's pick a letter
+				Debug.Log ("2");
 				AudioClip audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[2];
-				audioSource.PlayOneShot (audioClip);
+				PlayAudio (audioClip);
 
-				await Task.Delay (3000, cancellationToken);
+				await Task.Delay (3500, cancellationToken);
 
 				if (cancellationToken.IsCancellationRequested)
 					return;
 
+				// Let's trace a letter
+				Debug.Log ("3");
 				audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[3];
-				audioSource.PlayOneShot (audioClip);
+				PlayAudio (audioClip);
 			}
 			catch (Exception e)
 			{
@@ -117,13 +127,17 @@ namespace DynamicBox.Controllers
 				
 				dialectIndex = PlayerPrefs.GetInt ("DialectIndex");
 
+				// Bravo
+				Debug.Log ("5");
 				AudioClip audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[5];
-				audioSource.PlayOneShot (audioClip);
+				PlayAudio (audioClip);
 				
-				await Task.Delay (2000, cancellationToken);
+				await Task.Delay (2500, cancellationToken);
 
+				// Let's try another letter
+				Debug.Log ("7");
 				audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[7];
-				audioSource.PlayOneShot (audioClip);
+				PlayAudio (audioClip);
 				
 				await Task.Delay (10000, cancellationToken);
 				
@@ -132,14 +146,22 @@ namespace DynamicBox.Controllers
 
 				if (!isNewLetterSelected)
 				{
+					// Yalla
+					Debug.Log ("4");
 					audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[4];
-					audioSource.PlayOneShot (audioClip);
+					PlayAudio (audioClip);
 				}
 			}
 			catch (Exception e)
 			{
 				Debug.Log ($"Exception: {e}");
 			}
+		}
+
+		private void PlayAudio (AudioClip audioClip)
+		{
+			audioSource.Stop ();
+			audioSource.PlayOneShot (audioClip);
 		}
 
 		#region Event Handlers

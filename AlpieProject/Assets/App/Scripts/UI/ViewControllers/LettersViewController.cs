@@ -59,6 +59,7 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private Sprite[] whiteLetters;
 
 		[Header ("Letter sounds")]
+		[SerializeField] private AudioSource audioSourceMenu;
 		[SerializeField] private AudioSource audioSource;
 		[SerializeField] private AudioClip[] egyptianSounds;
 		[SerializeField] private AudioClip[] foshaSounds;
@@ -249,6 +250,11 @@ namespace DynamicBox.UI.ViewControllers
 
 			letterImage.sprite = whiteLetters[currentLetterIndex];
 
+			if (audioSourceMenu.isPlaying)
+			{
+				audioSourceMenu.Stop ();
+			}
+			
 			if (audioSource.isPlaying)
 			{
 				audioSource.Stop ();
