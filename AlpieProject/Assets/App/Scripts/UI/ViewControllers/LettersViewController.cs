@@ -8,6 +8,7 @@ using DynamicBox.EventManagement;
 using DynamicBox.EventManagement.GameEvents;
 using DynamicBox.EventManagement.GameEvents.VoiceOver;
 using DynamicBox.Helpers;
+using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,7 @@ namespace DynamicBox.UI.ViewControllers
 	{
 		[Header ("Parameters")]
 		[SerializeField] private Color[] letterFlagColors;
+		[SerializeField] private float feelAnimStartDelay;
 
 		[Space]
 		[SerializeField] private AudioClip finishLetterSound;
@@ -35,6 +37,9 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private GameObject iapPanel;
 		[SerializeField] private GameObject rawImage;
 		[SerializeField] private GameObject iapLockedPanel;
+		[SerializeField] private Transform shapeTransform;
+		[SerializeField] private MMFeedbacks mmFeedbacks;
+		[SerializeField] private MMFeedbackImage mmFeedbackImage;
 
 		[Space]
 		[SerializeField] private GameObject rightPanel;
@@ -66,8 +71,8 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private VideoClip[] backgroundVideos;
 
 		[SerializeField] private int currentLetterIndex;
-		public int CurrentLetterIndex => currentLetterIndex;
-
+		
+		private bool isAgeConfirmedAtCurrentSession;
 		private bool allowEnableConfirmAgeButton = true;
 
 		#region Unity Methods
@@ -131,14 +136,11 @@ namespace DynamicBox.UI.ViewControllers
 		public void CancelIAPDialog ()
 		{
 			iapPanel.SetActive (false);
-			// currentLetterIndex = 0;
 			
 			dayInputField.text = string.Empty;
 			monthInputField.text = string.Empty;
 			yearInputField.text = string.Empty;
 			confirmAgeButton.interactable = false;
-			
-			// ShowLetter ();
 		}
 
 		private void SetSounds ()
@@ -184,9 +186,21 @@ namespace DynamicBox.UI.ViewControllers
 			ShowLetter ();
 		}
 
+		public void ShowAgePanel ()
+		{
+			if (!isAgeConfirmedAtCurrentSession)
+			{
+				agePanel.SetActive (true);
+			}
+			else
+			{
+				iapPanel.SetActive (true);
+			}
+		}
+
 		public void ConfirmAge ()
 		{
-			PlayerPrefs.SetString ("AgeConfirmed", "yes");
+			isAgeConfirmedAtCurrentSession = true;
 			agePanel.SetActive (false);
 			iapPanel.SetActive (true);
 		}
@@ -198,27 +212,24 @@ namespace DynamicBox.UI.ViewControllers
 			ShowLetter ();
 		}
 
+		public void SetLetterTarget ()
+		{
+			mmFeedbackImage.BoundImage = shapeTransform.GetChild (0).GetComponent<Image> ();
+		}
+
+		private IEnumerator ShowFeelAnimation ()
+		{
+			mmFeedbacks.PlayFeedbacks();
+			
+			yield return new WaitForSeconds (0.6f);
+			
+			shapeTransform.localScale = Vector3.one;
+			Destroy (shapeTransform.GetChild (0).gameObject);
+		}
+
 		private void ShowLetter ()
 		{
 			bool isUnlocked = PlayerPrefs.GetInt ("UnlockPurchased") != 0;
-			if (currentLetterIndex == 3)
-			{
-				if (!isUnlocked)
-				{
-					Debug.Log ("All letters are not unlocked");
-
-					if (!PlayerPrefs.GetString("AgeConfirmed").Equals ("yes"))
-					{
-						agePanel.SetActive (true);
-					}
-					
-					// return;
-				}
-				else
-				{
-					Debug.Log ("All letters are unlocked");
-				}
-			}
 
 			if (currentLetterIndex >= 3 && !isUnlocked)
 			{
@@ -241,19 +252,6 @@ namespace DynamicBox.UI.ViewControllers
 			audioSource.PlayOneShot (currentSounds[currentLetterIndex]);
 			
 			EventManager.Instance.Raise (new NewLetterSelectedEvent (true));
-
-			// Check if selected current letter is finished or not
-			// bool isCompleted = saveController.CheckIfLetterFinished (currentLetterIndex);
-			//
-			// if (isCompleted)
-			// {
-			// 	SetBackgroundVideo (currentLetterIndex);
-			// 	gameManager.DestroyShape ();
-			// }
-			// else
-			// {
-			// 	ShowCurrentLetter ();
-			// }
 			
 			ShowCurrentLetter ();
 		}
@@ -280,12 +278,21 @@ namespace DynamicBox.UI.ViewControllers
 
 		public void SetLetterFinished (int index)
 		{
+			StartCoroutine (SetLetterFinishedDelayed (index));
+		}
+
+		private IEnumerator SetLetterFinishedDelayed (int index)
+		{
+			StartCoroutine (ShowFeelAnimation ());
+			
+			yield return new WaitForSeconds (feelAnimStartDelay);
+			
 			saveController.SetLetterFinished (index);
 			SetLetterImage (index);
 			SetBackgroundVideo (index);
 			
 			hapticFeedback.Vibrate ();
-			Instantiate (confettiParticlePrefab, transform);
+			// Instantiate (confettiParticlePrefab, transform);
 			
 			rawImage.GetComponent<RawImage> ().color = Color.clear;
 			rawImage.GetComponent<RawImage> ().DOColor (Color.white, 1);

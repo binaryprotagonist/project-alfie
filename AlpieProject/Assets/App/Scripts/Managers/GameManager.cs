@@ -294,17 +294,33 @@ namespace DynamicBox.Managers
 			try
 			{
 				GameObject shapeGameObject;
-				
+				GameObject feelShapeGameObject;
+
 				if (isTestMode)
 				{
+					feelShapeGameObject = Instantiate (testShapePrefab, Vector3.zero, Quaternion.identity);
 					shapeGameObject = Instantiate (testShapePrefab, Vector3.zero, Quaternion.identity);
 				}
 				else
 				{
-					// letterIndex = PlayerPrefs.GetInt ("LetterIndex");
-
+					feelShapeGameObject = Instantiate (letterPrefabs[letterIndex], Vector3.zero, Quaternion.identity);
 					shapeGameObject = Instantiate (letterPrefabs[letterIndex], Vector3.zero, Quaternion.identity);
 				}
+
+				#region Feel
+
+				Destroy (feelShapeGameObject.GetComponent<Shape> ());
+				feelShapeGameObject.transform.SetParent (shapeParent);
+				feelShapeGameObject.transform.localPosition = Vector3.zero;
+				feelShapeGameObject.transform.localRotation = Quaternion.identity;
+				feelShapeGameObject.transform.localScale = Vector3.one;
+
+				foreach (Transform child in feelShapeGameObject.transform)
+				{
+					Destroy (child.gameObject);
+				}
+
+				#endregion
 
 				shapeGameObject.transform.SetParent (shapeParent);
 				shapeGameObject.transform.localPosition = Vector3.zero;
@@ -336,6 +352,8 @@ namespace DynamicBox.Managers
 			}
 
 			// shape.Spell ();
+
+			lettersViewController.SetLetterTarget ();
 
 			EnableGameManager ();
 		}

@@ -4844,9 +4844,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3322676}
-        m_TargetAssemblyTypeName: DynamicBox.Controllers.IAPHandler, Assembly-CSharp
-        m_MethodName: UnlockAllLetters
+      - m_Target: {fileID: 1662128348}
+        m_TargetAssemblyTypeName: DynamicBox.UI.ViewControllers.LettersViewController,
+          Assembly-CSharp
+        m_MethodName: ShowAgePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8570,6 +8571,7 @@ MonoBehaviour:
   - {r: 0.32941177, g: 0.6901961, b: 0.7411765, a: 1}
   - {r: 0.9607844, g: 0.79215693, b: 0.23137257, a: 1}
   - {r: 0.9607844, g: 0.79215693, b: 0.23137257, a: 1}
+  feelAnimStartDelay: 2
   finishLetterSound: {fileID: 8300000, guid: 079638b6a63367944823b62b3dcede0f, type: 3}
   saveController: {fileID: 1366031601}
   gameManager: {fileID: 260420653}
@@ -8581,6 +8583,9 @@ MonoBehaviour:
   iapPanel: {fileID: 1156669994}
   rawImage: {fileID: 211769152}
   iapLockedPanel: {fileID: 1628711561}
+  shapeTransform: {fileID: 9096744189727588459}
+  mmFeedbacks: {fileID: 1777083035}
+  mmFeedbackImage: {fileID: 1777083033}
   rightPanel: {fileID: 148437505}
   letterBackground: {fileID: 2081715264}
   letterImage: {fileID: 1001930332}
@@ -9262,6 +9267,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754317925}
   m_CullTransparentMesh: 1
+--- !u!114 &1777083033 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1422464779622559885, guid: 93639045c143513479da19d2ae8867b7, type: 3}
+  m_PrefabInstance: {fileID: 1422464779801262376}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb334e9c7508c274bbc3b4ed998d49cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1777083035 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1422464779622559872, guid: 93639045c143513479da19d2ae8867b7, type: 3}
+  m_PrefabInstance: {fileID: 1422464779801262376}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841b72de2996c5c40bfb394f3d0e0a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1791577689
 GameObject:
   m_ObjectHideFlags: 0
@@ -15802,6 +15829,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Feel_fade_size
       objectReference: {fileID: 0}
+    - target: {fileID: 1422464779622559885, guid: 93639045c143513479da19d2ae8867b7, type: 3}
+      propertyPath: BoundImage
+      value: 
+      objectReference: {fileID: 4175875526765823404, guid: 6cdd1f36d37ea7f468ae75bbbdfdcd8a, type: 3}
+    - target: {fileID: 1422464779622559886, guid: 93639045c143513479da19d2ae8867b7, type: 3}
+      propertyPath: AnimateScaleTarget
+      value: 
+      objectReference: {fileID: 9096744189727588459}
     - target: {fileID: 1422464779622559887, guid: 93639045c143513479da19d2ae8867b7, type: 3}
       propertyPath: m_RootOrder
       value: 18
