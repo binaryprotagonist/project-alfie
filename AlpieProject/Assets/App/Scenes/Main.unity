@@ -1513,7 +1513,7 @@ MonoBehaviour:
   - {fileID: 3637060482971416050, guid: d0ce85032cf69ad439af9801e64569b0, type: 3}
   - {fileID: 4139598870021496185, guid: 40a8d89a669a71041a8e81239edc73d0, type: 3}
   - {fileID: 2758057976061323762, guid: 07264a5bbcca7c74a879bc38771af34d, type: 3}
-  - {fileID: 100183085295814068, guid: ddf203e7f39788545b40064b26ff0ce3, type: 3}
+  - {fileID: 5906707755303431098, guid: 0b3edb816d79bae4994b06d7ed49c3f2, type: 3}
   - {fileID: 3475570715615963749, guid: aaa9008a3fa5a39448b85c435b88cff8, type: 3}
   - {fileID: 1860067741944524881, guid: c341b7749b60ee242a90e6e764506ce2, type: 3}
   - {fileID: 1860067741944524881, guid: c9fc0ee8b9d48dd46a0e8504b656903c, type: 3}
@@ -1524,7 +1524,6 @@ MonoBehaviour:
   shapeParent: {fileID: 9096744189727588459}
   shape: {fileID: 0}
   pathFillImage: {fileID: 0}
-  hand: {fileID: 0}
 --- !u!1 &289225356
 GameObject:
   m_ObjectHideFlags: 0
@@ -8633,7 +8632,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0dbd1bb00937ea84a99e2b336f44d91f, type: 3}
   - {fileID: 21300000, guid: cad23c0cea9935a45a98af4e374d5a40, type: 3}
   - {fileID: 21300000, guid: cc06f353d401bf24eab394163871925a, type: 3}
-  - {fileID: 21300000, guid: 39910836e3b72784f9e70a5fb81bff52, type: 3}
+  - {fileID: 21300000, guid: 457347d370fc8e744898060308bb9ab6, type: 3}
   - {fileID: 21300000, guid: 4ad7ffcc17cc86148b9c64b8fa097c08, type: 3}
   - {fileID: 21300000, guid: d3ae816d311260a4981fb2611803eb7a, type: 3}
   - {fileID: 21300000, guid: 28faab6c7b97ee74285ef6995d2a15c4, type: 3}
