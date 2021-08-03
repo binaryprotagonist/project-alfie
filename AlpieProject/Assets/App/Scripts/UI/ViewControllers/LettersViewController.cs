@@ -221,7 +221,7 @@ namespace DynamicBox.UI.ViewControllers
 		{
 			mmFeedbacks.PlayFeedbacks();
 			
-			yield return new WaitForSeconds (0.6f);
+			yield return new WaitForSeconds (0.7f);
 			
 			shapeTransform.localScale = Vector3.one;
 			Destroy (shapeTransform.GetChild (0).gameObject);
@@ -229,6 +229,11 @@ namespace DynamicBox.UI.ViewControllers
 
 		private void ShowLetter ()
 		{
+			if (shapeTransform.childCount > 0)
+			{
+				Destroy (shapeTransform.GetChild (0).gameObject);
+			}
+
 			bool isUnlocked = PlayerPrefs.GetInt ("UnlockPurchased") != 0;
 
 			if (currentLetterIndex >= 3 && !isUnlocked)
@@ -285,11 +290,15 @@ namespace DynamicBox.UI.ViewControllers
 		{
 			StartCoroutine (ShowFeelAnimation ());
 			
+			// for preventing showing several frames from previous letter video 
+			SetBackgroundVideo (index);
+			
 			yield return new WaitForSeconds (feelAnimStartDelay);
 			
 			saveController.SetLetterFinished (index);
 			SetLetterImage (index);
-			SetBackgroundVideo (index);
+			// SetBackgroundVideo (index);
+			ShowVideo ();
 			
 			hapticFeedback.Vibrate ();
 			// Instantiate (confettiParticlePrefab, transform);
@@ -310,11 +319,17 @@ namespace DynamicBox.UI.ViewControllers
 			videoPlayer.clip = backgroundVideos[index];
 			letterBackground.color = letterFlagColors[index];
 
-			rawImage.SetActive (true);
-			rightPanel.SetActive (true);
+			// rawImage.SetActive (true);
+			// rightPanel.SetActive (true);
 			videoPlayer.Play ();
 
 			SoundyManager.Play (finishLetterSound, Vector3.zero);
+		}
+
+		private void ShowVideo ()
+		{
+			rawImage.SetActive (true);
+			rightPanel.SetActive (true);
 		}
 
 		#region Event Handlers
