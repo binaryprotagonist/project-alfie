@@ -68,7 +68,7 @@ namespace DynamicBox.Controllers
 				dialectIndex = PlayerPrefs.GetInt ("DialectIndex");
 
 				// Hi
-				Debug.Log ("0");
+				// Debug.Log ("0");
 				AudioClip audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[0];
 				PlayAudio (audioClip);
 				
@@ -78,7 +78,7 @@ namespace DynamicBox.Controllers
 					return;
 
 				// Let's play together
-				Debug.Log ("1");
+				// Debug.Log ("1");
 				audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[1];
 				PlayAudio (audioClip);
 			}
@@ -99,7 +99,7 @@ namespace DynamicBox.Controllers
 				dialectIndex = PlayerPrefs.GetInt ("DialectIndex");
 
 				// Let's pick a letter
-				Debug.Log ("2");
+				// Debug.Log ("2");
 				AudioClip audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[2];
 				PlayAudio (audioClip);
 
@@ -109,7 +109,7 @@ namespace DynamicBox.Controllers
 					return;
 
 				// Let's trace a letter
-				Debug.Log ("3");
+				// Debug.Log ("3");
 				audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[3];
 				PlayAudio (audioClip);
 			}
@@ -128,14 +128,14 @@ namespace DynamicBox.Controllers
 				dialectIndex = PlayerPrefs.GetInt ("DialectIndex");
 
 				// Bravo
-				Debug.Log ("5");
+				// Debug.Log ("5");
 				AudioClip audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[5];
 				PlayAudio (audioClip);
 				
 				await Task.Delay (2500, cancellationToken);
 
 				// Let's try another letter
-				Debug.Log ("7");
+				// Debug.Log ("7");
 				audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[7];
 				PlayAudio (audioClip);
 				
@@ -147,7 +147,7 @@ namespace DynamicBox.Controllers
 				if (!isNewLetterSelected)
 				{
 					// Yalla
-					Debug.Log ("4");
+					// Debug.Log ("4");
 					audioClip = dialectVoiceOverData[dialectIndex].VoiceOvers[4];
 					PlayAudio (audioClip);
 				}

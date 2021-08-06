@@ -145,6 +145,7 @@ namespace DynamicBox.Managers
 				{
 					if (hit2d.transform.CompareTag ("Start"))
 					{
+						// Debug.Log ($"angle = {angle}");
 						OnStartHitCollider (hit2d);
 						shape.CancelInvoke ();
 						shape.DisableTracingHand ();
@@ -275,6 +276,14 @@ namespace DynamicBox.Managers
 		// Create new shape.
 		public void CreateShape (int index = 0)
 		{
+			Debug.Log ($"Before: angle = {angle}, angleOffset = {angleOffset}, fillAmount = {fillAmount}");
+			
+			angle = 0;
+			// angleOffset = 0;
+			fillAmount = 0;
+			
+			Debug.Log ($"After: angle = {angle}, angleOffset = {angleOffset}, fillAmount = {fillAmount}");
+			
 			letterIndex = index;
 
 			CompoundShape currentCompoundShape = FindObjectOfType<CompoundShape> ();
@@ -391,6 +400,7 @@ namespace DynamicBox.Managers
 		// }
 
 		// Get the current platform click position.
+		
 		private Vector3 GetCurrentPlatformClickPosition (Camera camera)
 		{
 			Vector3 clickPosition = Vector3.zero;
@@ -453,6 +463,8 @@ namespace DynamicBox.Managers
 					angleOffset = -clockWiseSign * 90;
 					break;
 			}
+			
+			// Debug.Log ($"Radial Fill: angleOffset = {angleOffset}");
 
 			angle = Mathf.Atan2 (-clockWiseSign * direction.x, -direction.y) * Mathf.Rad2Deg + angleOffset;
 
@@ -552,7 +564,8 @@ namespace DynamicBox.Managers
 		// Checks whether path completed or not.
 		private void CheckPathComplete ()
 		{
-			// Debug.Log ("fillAmount = " + fillAmount);
+			// Debug.Log ($"CheckPathComplete: angle = {angle}, angleOffset = {angleOffset}, fillAmount = {fillAmount}");
+			
 			if (fillAmount >= path.completeOffset)
 			{
 				rocket.SetActive (false);

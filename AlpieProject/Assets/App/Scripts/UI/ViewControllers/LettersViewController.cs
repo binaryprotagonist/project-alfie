@@ -19,7 +19,8 @@ namespace DynamicBox.UI.ViewControllers
 {
 	public class LettersViewController : MonoBehaviour
 	{
-		[Header ("Parameters")]
+		[Header ("Parameters")] 
+		[SerializeField] private bool isUnlockedForTest;
 		[SerializeField] private Color[] letterFlagColors;
 		[SerializeField] private float feelAnimStartDelay;
 
@@ -72,6 +73,7 @@ namespace DynamicBox.UI.ViewControllers
 		[SerializeField] private VideoClip[] backgroundVideos;
 
 		[SerializeField] private int currentLetterIndex;
+		[SerializeField] private int lastFinishedLetterIndex;
 		
 		private bool isAgeConfirmedAtCurrentSession;
 		private bool allowEnableConfirmAgeButton = true;
@@ -220,12 +222,16 @@ namespace DynamicBox.UI.ViewControllers
 
 		private IEnumerator ShowFeelAnimation ()
 		{
-			mmFeedbacks.PlayFeedbacks();
-			
+			mmFeedbacks.PlayFeedbacks ();
+
 			yield return new WaitForSeconds (0.7f);
-			
+
 			shapeTransform.localScale = Vector3.one;
-			Destroy (shapeTransform.GetChild (0).gameObject);
+
+			if (shapeTransform.GetChild (0).gameObject != null)
+			{
+				Destroy (shapeTransform.GetChild (0).gameObject);
+			}
 		}
 
 		private void ShowLetter ()
@@ -235,7 +241,15 @@ namespace DynamicBox.UI.ViewControllers
 				Destroy (shapeTransform.GetChild (0).gameObject);
 			}
 
-			bool isUnlocked = PlayerPrefs.GetInt ("UnlockPurchased") != 0;
+			bool isUnlocked;
+			if (isUnlockedForTest)
+			{
+				isUnlocked = true;
+			}
+			else
+			{
+				isUnlocked = PlayerPrefs.GetInt ("UnlockPurchased") != 0;
+			}
 
 			if (currentLetterIndex >= 3 && !isUnlocked)
 			{
@@ -289,6 +303,7 @@ namespace DynamicBox.UI.ViewControllers
 
 		public void SetLetterFinished (int index)
 		{
+			lastFinishedLetterIndex = index;
 			StartCoroutine (SetLetterFinishedDelayed (index));
 		}
 
@@ -303,14 +318,20 @@ namespace DynamicBox.UI.ViewControllers
 			
 			saveController.SetLetterFinished (index);
 			SetLetterImage (index);
-			// SetBackgroundVideo (index);
-			ShowVideo ();
 			
-			hapticFeedback.Vibrate ();
-			// Instantiate (confettiParticlePrefab, transform);
+			if (currentLetterIndex != lastFinishedLetterIndex)
+			{
+				StopAndHideVideo ();
+			}
+			else
+			{
+				ShowVideo ();
+				hapticFeedback.Vibrate ();
 			
-			rawImage.GetComponent<RawImage> ().color = Color.clear;
-			rawImage.GetComponent<RawImage> ().DOColor (Color.white, 1);
+				rawImage.GetComponent<RawImage> ().color = Color.clear;
+				rawImage.GetComponent<RawImage> ().DOColor (Color.white, 1);
+			}
+			
 		}
 
 		private void SetLetterImage (int index)
@@ -336,6 +357,14 @@ namespace DynamicBox.UI.ViewControllers
 		{
 			rawImage.SetActive (true);
 			rightPanel.SetActive (true);
+		}
+		
+		private void StopAndHideVideo ()
+		{
+			// Debug.Log ("StopAndHideVideo");
+			videoPlayer.Stop ();
+			rawImage.SetActive (false);
+			rightPanel.SetActive (false);
 		}
 
 		#region Event Handlers

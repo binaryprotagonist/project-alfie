@@ -1487,7 +1487,7 @@ MonoBehaviour:
   lettersViewController: {fileID: 1662128348}
   myCanvas: {fileID: 1042077062}
   rocket: {fileID: 778485530}
-  testShapePrefab: {fileID: 719840734995328446, guid: 84e7080f70996404fad0b4eba6f44f0c, type: 3}
+  testShapePrefab: {fileID: 905602855289936133, guid: 36a3cd1d8bfd16e43bd87f974a39aaea, type: 3}
   paintColor: {r: 1, g: 1, b: 1, a: 1}
   letterPrefabs:
   - {fileID: 4175875526775321138, guid: 6cdd1f36d37ea7f468ae75bbbdfdcd8a, type: 3}
@@ -1501,9 +1501,9 @@ MonoBehaviour:
   - {fileID: 1949708936492119212, guid: bbe479ce2fa77ba45892b6af80510f83, type: 3}
   - {fileID: 7818651851705010803, guid: 92bc428c8c8a5f142a675ed42292da96, type: 3}
   - {fileID: 783036631149565552, guid: 532b43ca88d12544bbf0d51657401d8e, type: 3}
-  - {fileID: 719840734995328446, guid: 84e7080f70996404fad0b4eba6f44f0c, type: 3}
+  - {fileID: 905602855289936133, guid: 36a3cd1d8bfd16e43bd87f974a39aaea, type: 3}
   - {fileID: 4270159700122424531, guid: 57df498c71f40c343bbe55bd030c19c9, type: 3}
-  - {fileID: 8482265079487093127, guid: 7073d4ff0cd106b4a9f20662e822f868, type: 3}
+  - {fileID: 2039617677541711666, guid: f2924222d4ffa04419cef7f6a68a8bb3, type: 3}
   - {fileID: 8482265079487093127, guid: 957fb3d94bc319345aa43bc3981a4e74, type: 3}
   - {fileID: 8482265079487093127, guid: ecf1b54ab0ac5a34d9385b55d9c8a7ab, type: 3}
   - {fileID: 8482265079487093127, guid: e831945594a7a5148ade8b0ee8f9428e, type: 3}
@@ -1511,11 +1511,11 @@ MonoBehaviour:
   - {fileID: 587374334424172890, guid: 9a289bb7a5b9b9440a1f91ea93f7915c, type: 3}
   - {fileID: 417149011380617080, guid: 3d5502dee59b9774592a4d5dee2b7d65, type: 3}
   - {fileID: 3637060482971416050, guid: d0ce85032cf69ad439af9801e64569b0, type: 3}
-  - {fileID: 4139598870021496185, guid: 40a8d89a669a71041a8e81239edc73d0, type: 3}
-  - {fileID: 2758057976061323762, guid: 07264a5bbcca7c74a879bc38771af34d, type: 3}
+  - {fileID: 7083474878330025539, guid: 1d15e3b09ca237e4eb595aff6a6d9eef, type: 3}
+  - {fileID: 3359203307552266897, guid: 7ff7d867ffd2a44499eb71f9d4459f9c, type: 3}
   - {fileID: 5906707755303431098, guid: 0b3edb816d79bae4994b06d7ed49c3f2, type: 3}
   - {fileID: 3475570715615963749, guid: aaa9008a3fa5a39448b85c435b88cff8, type: 3}
-  - {fileID: 1860067741944524881, guid: c341b7749b60ee242a90e6e764506ce2, type: 3}
+  - {fileID: 7032882832686144083, guid: bd0792ac0d581b74db319c3fbe2962fe, type: 3}
   - {fileID: 1860067741944524881, guid: c9fc0ee8b9d48dd46a0e8504b656903c, type: 3}
   - {fileID: 1860067741944524881, guid: 61057ec7a9d0ac44cb0cc1cc1a40a535, type: 3}
   isRunning: 1
@@ -5058,7 +5058,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2412103f473054f45b1e8d56c593a194, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d14c747feecfd724caf8d10b0d08a39d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -8540,6 +8540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fe6209270b483b9b02bc033360f9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isUnlockedForTest: 1
   letterFlagColors:
   - {r: 0.91372555, g: 0.34117648, b: 0.28627452, a: 1}
   - {r: 0.9607844, g: 0.79215693, b: 0.23137257, a: 1}
