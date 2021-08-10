@@ -1524,6 +1524,10 @@ MonoBehaviour:
   shapeParent: {fileID: 9096744189727588459}
   shape: {fileID: 0}
   pathFillImage: {fileID: 0}
+  angle: 0
+  angleOffset: 0
+  fillAmount: 0
+  targetQuarter: 0
 --- !u!1 &289225356
 GameObject:
   m_ObjectHideFlags: 0
@@ -8540,7 +8544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fe6209270b483b9b02bc033360f9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUnlockedForTest: 1
+  isUnlockedForTest: 0
   letterFlagColors:
   - {r: 0.91372555, g: 0.34117648, b: 0.28627452, a: 1}
   - {r: 0.9607844, g: 0.79215693, b: 0.23137257, a: 1}
@@ -8800,6 +8804,7 @@ MonoBehaviour:
   - {fileID: 32900000, guid: 646dae6445ead54499c3f7bae78bcb26, type: 3}
   - {fileID: 32900000, guid: fa66b512d309f604a9571fe9f82ba62c, type: 3}
   currentLetterIndex: 0
+  lastFinishedLetterIndex: 0
 --- !u!114 &1662128349
 MonoBehaviour:
   m_ObjectHideFlags: 0

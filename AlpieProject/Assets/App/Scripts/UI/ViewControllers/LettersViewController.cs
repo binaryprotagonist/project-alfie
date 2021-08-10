@@ -292,6 +292,8 @@ namespace DynamicBox.UI.ViewControllers
 		{
 			rawImage.SetActive (false);
 			rightPanel.SetActive (false);
+			
+			Debug.Log ($"currentLetterIndex = {currentLetterIndex}");
 			gameManager.CreateShape (currentLetterIndex);
 		}
 

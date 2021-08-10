@@ -49,7 +49,7 @@ namespace DynamicBox.Managers
 		private Vector2 direction;
 
 		// The current angle , angleOffset and fill amount.
-		private float angle, angleOffset, fillAmount;
+		public float angle, angleOffset, fillAmount;
 
 		// The clock wise sign.
 		private float clockWiseSign;
@@ -64,7 +64,7 @@ namespace DynamicBox.Managers
 		private Vector3 cursorClickSize;
 
 		// The target quarter of the radial fill.
-		private float targetQuarter;
+		public float targetQuarter;
 
 		// The effects audio source.
 		private AudioSource effectsAudioSource;
@@ -180,21 +180,16 @@ namespace DynamicBox.Managers
 
 						if (hit.collider.CompareTag ("LetterCollider"))
 						{
-							// Debug.Log ("1");
-
 							isClickOnLetter = true;
 
 							break;
 						}
-
-						// Debug.Log ("2");
 
 						isClickOnLetter = false;
 					}
 				}
 				else
 				{
-					// Debug.Log ("3");
 					isClickOnLetter = false;
 				}
 			}
@@ -276,13 +271,8 @@ namespace DynamicBox.Managers
 		// Create new shape.
 		public void CreateShape (int index = 0)
 		{
-			Debug.Log ($"Before: angle = {angle}, angleOffset = {angleOffset}, fillAmount = {fillAmount}");
-			
 			angle = 0;
-			// angleOffset = 0;
-			fillAmount = 0;
-			
-			Debug.Log ($"After: angle = {angle}, angleOffset = {angleOffset}, fillAmount = {fillAmount}");
+			targetQuarter = 0;
 			
 			letterIndex = index;
 
@@ -464,14 +454,13 @@ namespace DynamicBox.Managers
 					break;
 			}
 			
-			// Debug.Log ($"Radial Fill: angleOffset = {angleOffset}");
-
 			angle = Mathf.Atan2 (-clockWiseSign * direction.x, -direction.y) * Mathf.Rad2Deg + angleOffset;
 
 			if (angle < 0)
 				angle += 360;
 
 			angle = Mathf.Clamp (angle, 0, 360);
+			
 			angle -= path.radialAngleOffset;
 
 			if (path.quarterRestriction)
@@ -479,9 +468,13 @@ namespace DynamicBox.Managers
 				if (!(angle >= 0 && angle <= targetQuarter))
 				{
 					pathFillImage.fillAmount = 0;
+					
+					// Debug.Log ("return - angle = " + angle + ", targetQuarter = " + targetQuarter);
 					return;
 				}
 
+				// Debug.Log ("not     return - angle = " + angle + ", targetQuarter = " + targetQuarter);
+				
 				if (angle >= targetQuarter / 2)
 				{
 					targetQuarter += 90;
@@ -590,6 +583,8 @@ namespace DynamicBox.Managers
 
 				if (shape != null)
 				{
+					// Debug.Log ($"Path Completed: angle = {angle}, angleOffset = {angleOffset}, fillAmount = {fillAmount}");
+					
 					// Debug.Log ("Shape is not null");
 					Debug.Log ("Path completed");
 
