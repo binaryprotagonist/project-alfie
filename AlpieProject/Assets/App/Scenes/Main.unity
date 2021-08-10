@@ -8544,7 +8544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fe6209270b483b9b02bc033360f9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUnlockedForTest: 0
+  isUnlockedForTest: 1
   letterFlagColors:
   - {r: 0.91372555, g: 0.34117648, b: 0.28627452, a: 1}
   - {r: 0.9607844, g: 0.79215693, b: 0.23137257, a: 1}
